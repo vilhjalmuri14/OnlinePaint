@@ -49,3 +49,97 @@ $(document).ready(function(){
 		isDrawing = false;
 	});
 });
+
+// the code from lecture
+
+class Shape {
+	constructor(x, y, color) {
+		this.startX = x;
+		this.startY = y;
+		this.color = color;
+	}
+
+	setEnd(x, y) {
+		this.endX = x;
+		this.endY = y;
+	}
+}
+
+class Rectangle extends Shape {
+	constructor(x, y, color) {
+		super(x, y, color);
+	}
+
+	draw(context) {
+		context.fillStyle = this.color;
+		context.fillRect(tis.x, this.y, 40, 40);
+	}
+}
+
+var settings =  {
+	canvasObj: document.getElementById("myCanvas");
+	nextObject: "Rectangle",
+	nextColor: "Red",
+	isDrawing: false,
+	currentShape: undefined,
+	shapes: []
+};
+
+$("myCanvas").on("mousedown", function(e) {
+
+	settings.isDrawing = true;
+
+	var shape = undefined;
+	var context = settings.canvasObj.getContext("2d");
+
+	if(settings.nextObject === "circle") {
+		shape = new Circle(/* TODO: find x and y*/, settings.nextColor);
+	}
+	else if(settings.nextObject === "Rectangle") {
+		shape = new Rectangle(/* TODO: find x and y*/, settings.nextColor);
+	}
+
+	settings.currentShape = shape;
+	settings.shapes.push(shape);
+
+	shape.draw(context);
+});
+
+class Line extends Shape {
+	
+	constructor(x, y, color) {
+		super(x, y, color);
+		this.points = [];
+	}
+	//
+
+	setEnd(x, y) {
+		this.points.push({x: x, y: y});
+	}
+
+	draw(context) {
+		
+	}
+}
+
+$("myCanvas").on("mousemove", function(e) {
+
+	if(settings.currentShape !== undefined) {
+		// TODO: update the end position of the current shape
+		settings.currentShape.setEnd(e.x, e.y /* TODO: fix the position! */);
+	}
+
+	drawAll();
+});
+
+function drawAll() {
+	var context = settings.canvasObj.getContext("2d");
+	// TODO: clear the canvasObj
+
+	// TODO: draw all the objects
+}
+
+$("myCanvas").on("mouseup", function(e) {
+	settings.currentShape = undefined;
+});
+

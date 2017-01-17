@@ -96,25 +96,45 @@ class Line extends Shape {
 	}
 }
 
+class Circle extends Shape {
+	constructor(x, y, color) {
+		super(x, y, color);
+	}
+
+	draw(context) {
+		// Drawing a filled circle with outline:
+		context.beginPath();
+
+		var radius = Math.sqrt(Math.pow(Math.abs(this.startX - this.endX), 2) 
+					+ Math.pow(Math.abs(this.startY - this.endY),2));
+		context.arc(this.startX, this.startY, radius, 0, 2 * Math.PI, false );
+
+		// TODO: change this
+		context.lineWidth = 5;
+		context.strokeStyle = this.color;
+		context.stroke();
+	}
+}
+
 class Pen extends Shape {
 		
-		constructor(x, y, color) {
-			super(x, y, color);
-			this.points = [];
-		}
+	constructor(x, y, color) {
+		super(x, y, color);
+		this.points = [];
+	}
+	
+	setEnd(x, y) {
+		this.points.push({x: x, y: y});
+	}
 
-		setEnd(x, y) {
-			this.points.push({x: x, y: y});
-		}
-
-		draw(context) {
+	draw(context) {
 			
-		}
+	}
 }
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Rectangle",
+	nextObject: "Circle",
 	nextColor: "Red",
 	isDrawing: false,
 	currentShape: undefined,
@@ -130,8 +150,8 @@ $(document).ready(function(){
 		var shape = undefined;
 		var context = settings.canvasObj.getContext("2d");
 
-		if(settings.nextObject === "circle") {
-			//shape = new Circle( TODO: find x and y , settings.nextColor);
+		if(settings.nextObject === "Circle") {
+			shape = new Circle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
 		}
 		else if(settings.nextObject === "Rectangle") {
 			shape = new Rectangle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);

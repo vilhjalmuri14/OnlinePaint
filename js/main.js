@@ -34,7 +34,7 @@ class Line extends Shape {
 		context.moveTo(this.startX, this.startY);
 		context.lineTo(this.endX, this.endY);
 
-		context.lineWidth = 10;
+		context.lineWidth = 2;
 		context.strokeStyle = this.color;
 		context.stroke();
 	}
@@ -71,8 +71,16 @@ class Pen extends Shape {
 	}
 
 	draw(context) {
-		// TODO: loop through the points and print
-
+		// looping through the points and creating lines between them
+		for(var i = 1; i < this.points.length; i++) {
+			context.fillStyle = this.color;
+			context.beginPath();
+			context.moveTo(this.points[i-1].x, this.points[i-1].y);
+			context.lineTo(this.points[i].x, this.points[i].y);
+			context.lineWidth = 2;
+			context.strokeStyle = this.color;
+			context.stroke();
+		}
 	}
 }
 
@@ -104,6 +112,9 @@ $(document).ready(function(){
 		}
 		else if(settings.nextObject === "Line") {
 			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
+		}
+		else if(settings.nextObject === "Pen") {
+			shape = new Pen((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);	
 		}
 
 		settings.currentShape = shape;

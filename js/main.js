@@ -59,6 +59,19 @@ class Circle extends Shape {
 	}
 }
 
+class Text extends Shape {
+	constructor(x, y, color) {
+		super(x, y, color);
+
+		// TODO: open (hidden) text box to write
+	}
+
+	draw(context) {
+		context.font = "32px serif";
+  		context.fillText("Hæ Lalli", this.startX, this.startY);
+	}
+}
+
 class Pen extends Shape {
 		
 	constructor(x, y, color) {
@@ -115,6 +128,9 @@ $(document).ready(function(){
 		}
 		else if(settings.nextObject === "Pen") {
 			shape = new Pen((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);	
+		}
+		else if(settings.nextObject === "Text") {
+			shape = new Text((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);		
 		}
 
 		settings.currentShape = shape;

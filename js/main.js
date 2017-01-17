@@ -1,3 +1,4 @@
+/* 
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
@@ -49,6 +50,7 @@ $(document).ready(function(){
 		isDrawing = false;
 	});
 });
+*/
 
 // the code from lecture
 
@@ -77,7 +79,7 @@ class Rectangle extends Shape {
 }
 
 var settings =  {
-	canvasObj: document.getElementById("myCanvas");
+	canvasObj: document.getElementById("myCanvas"),
 	nextObject: "Rectangle",
 	nextColor: "Red",
 	isDrawing: false,
@@ -93,10 +95,10 @@ $("myCanvas").on("mousedown", function(e) {
 	var context = settings.canvasObj.getContext("2d");
 
 	if(settings.nextObject === "circle") {
-		shape = new Circle(/* TODO: find x and y*/, settings.nextColor);
+		//shape = new Circle( TODO: find x and y , settings.nextColor);
 	}
 	else if(settings.nextObject === "Rectangle") {
-		shape = new Rectangle(/* TODO: find x and y*/, settings.nextColor);
+		//shape = new Rectangle( TODO: find x and y , settings.nextColor);
 	}
 
 	settings.currentShape = shape;

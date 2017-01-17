@@ -3,19 +3,19 @@ body {
 	background-color: lightblue;
 }
 
+.toolBar {
+	padding: 30px;
+	background-color: rgb(221, 221, 221);
+}
+
 .logoSpace {
-	
+
 }
 
 #logo {
 	width: 30px;
 	height: 30px;
 	margin-right: 50px;
-}
-
-.toolBar {
-	padding: 30px;
-	background-color: rgb(221, 221, 221);
 }
 
 input[name="tool"] {
@@ -36,6 +36,11 @@ canvas {
 }
 
 .colorPicker {
+	float: left;
+	margin-right: 50px;
+}
+
+.slider {
 	float: left;
 	margin-right: 50px;
 }

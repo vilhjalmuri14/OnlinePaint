@@ -1,8 +1,9 @@
 class Shape {
-	constructor(x, y, color) {
+	constructor(x, y, color, lineWidth) {
 		this.startX = x;
 		this.startY = y;
 		this.color = color;
+		this.lineWidth = lineWidth;
 	}
 
 	setEnd(x, y) {
@@ -12,8 +13,8 @@ class Shape {
 }
 
 class Rectangle extends Shape {
-	constructor(x, y, color) {
-		super(x, y, color);
+	constructor(x, y, color, lineWidth) {
+		super(x, y, color, lineWidth);
 	}
 
 	draw(context) {
@@ -23,8 +24,8 @@ class Rectangle extends Shape {
 }
 
 class Line extends Shape {
-	constructor(x, y, color) {
-		super(x, y, color);
+	constructor(x, y, color, lineWidth) {
+		super(x, y, color, lineWidth);
 	}
 
 	draw(context) {
@@ -34,15 +35,15 @@ class Line extends Shape {
 		context.moveTo(this.startX, this.startY);
 		context.lineTo(this.endX, this.endY);
 
-		context.lineWidth = 2;
+		context.lineWidth = this.lineWidth;
 		context.strokeStyle = this.color;
 		context.stroke();
 	}
 }
 
 class Circle extends Shape {
-	constructor(x, y, color) {
-		super(x, y, color);
+	constructor(x, y, color, lineWidth) {
+		super(x, y, color, lineWidth);
 	}
 
 	draw(context) {
@@ -53,7 +54,7 @@ class Circle extends Shape {
 		context.arc(this.startX, this.startY, radius, 0, 2 * Math.PI, false );
 
 		// TODO: change this
-		context.lineWidth = 5;
+		context.lineWidth = this.lineWidth;
 		context.strokeStyle = this.color;
 		context.stroke();
 	}
@@ -63,19 +64,20 @@ class Text extends Shape {
 	constructor(x, y, color) {
 		super(x, y, color);
 
-		// TODO: open (hidden) text box to write
+			// TODO: Open text area
 	}
 
 	draw(context) {
 		context.font = "32px serif";
+		context.fillStyle = this.color;
   		context.fillText("Hæ Lalli", this.startX, this.startY);
 	}
 }
 
 class Pen extends Shape {
 		
-	constructor(x, y, color) {
-		super(x, y, color);
+	constructor(x, y, color, lineWidth) {
+		super(x, y, color, lineWidth);
 		this.points = [];
 	}
 	
@@ -90,7 +92,7 @@ class Pen extends Shape {
 			context.beginPath();
 			context.moveTo(this.points[i-1].x, this.points[i-1].y);
 			context.lineTo(this.points[i].x, this.points[i].y);
-			context.lineWidth = 2;
+			context.lineWidth = this.lineWidth;
 			context.strokeStyle = this.color;
 			context.stroke();
 		}
@@ -101,6 +103,7 @@ var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
 	nextObject: "Line",
 	nextColor: "Black",
+	lineWidth: "2",
 	isDrawing: false,
 	currentShape: undefined,
 	shapes: [],
@@ -118,19 +121,19 @@ $(document).ready(function(){
 		var context = settings.canvasObj.getContext("2d");
 
 		if(settings.nextObject === "Circle") {
-			shape = new Circle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
+			shape = new Circle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Rectangle") {
-			shape = new Rectangle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
+			shape = new Rectangle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Line") {
-			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
+			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Pen") {
-			shape = new Pen((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);	
+			shape = new Pen((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);	
 		}
 		else if(settings.nextObject === "Text") {
-			shape = new Text((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);		
+			shape = new Text((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);		
 		}
 
 		settings.currentShape = shape;
@@ -203,6 +206,11 @@ $(document).ready(function(){
         }
 
         settings.nextColor = colorObj;
+    });
+
+	$('input[name="lineWidth"]').change(function() {
+        var widthValue = $('input[name="lineWidth"]').val();
+        settings.lineWidth = widthValue;
     });
 
 	$("#undo").click(function(e) {

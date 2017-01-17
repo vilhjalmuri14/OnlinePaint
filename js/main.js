@@ -1,59 +1,3 @@
-/* 
-$(document).ready(function(){
-	var canvas = document.getElementById("myCanvas");
-	var context = canvas.getContext("2d");
-
-
-	var startX = 0;
-	var startY = 0;
-	var isDrawing = false;
-
-	$("#myCanvas").mousedown(function(e){
-		//console.log("inside mousedown");
-
-		var x = e.pageX - this.offsetLeft;
-		var y = e.pageY - this.offsetTop;
-		
-		startX = x;
-		startY = y;
-
-		isDrawing = true;
-
-		//console.log("X: " + x + " Y: " + y);
-
-		//context.fillStyle = "blue";
-		//context.fillRect(x - 30, y - 30, 60, 60);
-		//context.strokeStyle = "red";
-		//context.strokeRect(x - 30, y - 30, 60, 60);
-
-		
-	});
-
-	$("#myCanvas").mousemove(function(e){
-		if( isDrawing === true ) {
-			var x = e.pageX - this.offsetLeft;
-			var y = e.pageY - this.offsetTop;  
-
-			// clearing the screen
-			context.clearRect(0,0,500,500);
-
-			context.beginPath();
-			context.moveTo(startX, startY);
-			context.lineTo(x, y);
-			context.stroke();
-		}
-	});
-
-	$("#myCanvas").mouseup(function(e){
-		
-
-		isDrawing = false;
-	});
-});
-*/
-
-// the code from lecture
-
 class Shape {
 	constructor(x, y, color) {
 		this.startX = x;
@@ -90,7 +34,7 @@ class Line extends Shape {
 		context.moveTo(this.startX, this.startY);
 		context.lineTo(this.endX, this.endY);
 
-		context.lineWidth = 10;
+		context.lineWidth = 2;
 		context.strokeStyle = this.color;
 		context.stroke();
 	}
@@ -102,7 +46,6 @@ class Circle extends Shape {
 	}
 
 	draw(context) {
-		// Drawing a filled circle with outline:
 		context.beginPath();
 
 		var radius = Math.sqrt(Math.pow(Math.abs(this.startX - this.endX), 2) 
@@ -113,6 +56,19 @@ class Circle extends Shape {
 		context.lineWidth = 5;
 		context.strokeStyle = this.color;
 		context.stroke();
+	}
+}
+
+class Text extends Shape {
+	constructor(x, y, color) {
+		super(x, y, color);
+
+		// TODO: open (hidden) text box to write
+	}
+
+	draw(context) {
+		context.font = "32px serif";
+  		context.fillText("Hæ Lalli", this.startX, this.startY);
 	}
 }
 
@@ -128,7 +84,16 @@ class Pen extends Shape {
 	}
 
 	draw(context) {
-			
+		// looping through the points and creating lines between them
+		for(var i = 1; i < this.points.length; i++) {
+			context.fillStyle = this.color;
+			context.beginPath();
+			context.moveTo(this.points[i-1].x, this.points[i-1].y);
+			context.lineTo(this.points[i].x, this.points[i].y);
+			context.lineWidth = 2;
+			context.strokeStyle = this.color;
+			context.stroke();
+		}
 	}
 }
 
@@ -160,6 +125,12 @@ $(document).ready(function(){
 		}
 		else if(settings.nextObject === "Line") {
 			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
+		}
+		else if(settings.nextObject === "Pen") {
+			shape = new Pen((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);	
+		}
+		else if(settings.nextObject === "Text") {
+			shape = new Text((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);		
 		}
 
 		settings.currentShape = shape;

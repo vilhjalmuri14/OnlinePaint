@@ -118,7 +118,8 @@ var settings =  {
 	nextColor: "Red",
 	isDrawing: false,
 	currentShape: undefined,
-	shapes: []
+	shapes: [],
+	redo: []
 };
 
 $(document).ready(function(){
@@ -126,7 +127,8 @@ $(document).ready(function(){
 	$("#myCanvas").on("mousedown", function(e) {
 
 		settings.isDrawing = true;
-
+		document.getElementById("redo").disabled = true;
+		settings.redo = [];
 		var shape = undefined;
 		var context = settings.canvasObj.getContext("2d");
 
@@ -162,7 +164,6 @@ $(document).ready(function(){
 
 	function drawAll() {
 		var context = settings.canvasObj.getContext("2d");
-
 		// clearing the canvasObj
 		context.clearRect(0,0,1000,500);
 
@@ -171,6 +172,17 @@ $(document).ready(function(){
 			settings.shapes[i].draw(context);
 		}
 	}
+
+	$("#undo").click(function(e) {
+		settings.redo.push(settings.shapes.pop());
+		document.getElementById("redo").disabled = false;
+		drawAll();
+	});
+
+	$("#redo").click(function(e) {
+		settings.shapes.push(settings.redo.pop());
+		drawAll();
+	});
 
 });
 

@@ -134,7 +134,7 @@ class Pen extends Shape {
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Circle",
+	nextObject: "Line",
 	nextColor: "Red",
 	isDrawing: false,
 	currentShape: undefined,
@@ -192,6 +192,28 @@ $(document).ready(function(){
 			settings.shapes[i].draw(context);
 		}
 	}
+
+	$("input[name='tool']").click(function() {
+        var toolValue = $("input[name='tool']:checked").attr('id');
+        var toolObj;
+        if (toolValue === "circleButton") {
+        	toolObj = "Circle";
+        }
+        if (toolValue === "rectangleButton") {
+        	toolObj = "Rectangle";
+        }
+        if (toolValue === "lineButton") {
+        	toolObj = "Line";
+        }
+        if (toolValue === "textButton") {
+        	toolObj = "Text";
+        }
+        if (toolValue === "penButton") {
+        	toolObj = "Pen";
+        }
+
+        settings.nextObject = toolObj;
+    });
 
 	$("#undo").click(function(e) {
 		settings.redo.push(settings.shapes.pop());

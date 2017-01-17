@@ -73,8 +73,8 @@ class Rectangle extends Shape {
 	}
 
 	draw(context) {
-		context.fillStyle = this.color;
-		context.fillRect(tis.x, this.y, 40, 40);
+		context.strokeStyle = this.color;
+		context.strokeRect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
 	}
 }
 
@@ -114,7 +114,7 @@ class Pen extends Shape {
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Line",
+	nextObject: "Rectangle",
 	nextColor: "Red",
 	isDrawing: false,
 	currentShape: undefined,
@@ -134,7 +134,7 @@ $(document).ready(function(){
 			//shape = new Circle( TODO: find x and y , settings.nextColor);
 		}
 		else if(settings.nextObject === "Rectangle") {
-			//shape = new Rectangle( TODO: find x and y , settings.nextColor);
+			shape = new Rectangle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
 		}
 		else if(settings.nextObject === "Line") {
 			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);

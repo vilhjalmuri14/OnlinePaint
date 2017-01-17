@@ -8,16 +8,29 @@
         <link rel="author" href="humans.txt">
     </head>
     <body>
-    	<div id="toolBar">
-	    	<img src="assets/logo.png" alt="Palette" id="logo">
+    	<div class="toolBar">
+    		<div class="logoSpace">
+				<img src="assets/logo.png" alt="Palette" id="logo">
+			</div>
 
-	    	<input type="radio" name="tool" id="circleButton">Circle</input>
-	        <input type="radio" name="tool" id="rectangleButton">Rectangle</input>
-	        <input type="radio" name="tool" id="lineButton" checked>Line</input>
-	        <input type="radio" name="tool" id="textButton">Text</input>
-	        <input type="radio" name="tool" id="penButton">Pen</input>
-            <button type="button" name="undo" id="undo">undo</button>
-            <button type="button" name="redo" id="redo" disabled>redo</button>
+	    	<div class="toolPicker">
+		    	<input type="radio" name="tool" id="circleButton">Circle</input>
+		        <input type="radio" name="tool" id="rectangleButton">Rectangle</input>
+		        <input type="radio" name="tool" id="lineButton" checked>Line</input>
+		        <input type="radio" name="tool" id="textButton">Text</input>
+		        <input type="radio" name="tool" id="penButton">Pen</input>
+		    </div>
+			<div class="colorPicker">
+				<input type="radio" name="color" id="blackColor" checked>Black</input>
+		        <input type="radio" name="color" id="redColor">Red</input>
+		        <input type="radio" name="color" id="blueColor">Blue</input>
+		        <input type="radio" name="color" id="yellowColor">Yellow</input>
+		    </div>
+
+		    <div class="undoOptions">
+	            <button type="button" name="undo" id="undo">undo</button>
+	            <button type="button" name="redo" id="redo" disabled>redo</button>
+	        </div>
 		</div>
         <div>
         	<canvas id="myCanvas" width="1000" height="500"></canvas>

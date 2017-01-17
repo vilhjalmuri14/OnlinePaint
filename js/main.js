@@ -135,7 +135,7 @@ class Pen extends Shape {
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
 	nextObject: "Line",
-	nextColor: "Red",
+	nextColor: "Black",
 	isDrawing: false,
 	currentShape: undefined,
 	shapes: [],
@@ -213,6 +213,25 @@ $(document).ready(function(){
         }
 
         settings.nextObject = toolObj;
+    });
+
+    $("input[name='color']").click(function() {
+        var colorValue = $("input[name='color']:checked").attr('id');
+        var colorObj;
+        if (colorValue === "blackColor") {
+        	colorObj = "Black";
+        }
+        if (colorValue === "redColor") {
+        	colorObj = "Red";
+        }
+        if (colorValue === "blueColor") {
+        	colorObj = "Blue";
+        }
+        if (colorValue === "yellowColor") {
+        	colorObj = "Yellow";
+        }
+
+        settings.nextColor = colorObj;
     });
 
 	$("#undo").click(function(e) {

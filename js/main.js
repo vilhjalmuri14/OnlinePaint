@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
-
+		
 		startX = x;
 		startY = y;
 
@@ -78,70 +78,100 @@ class Rectangle extends Shape {
 	}
 }
 
+class Line extends Shape {
+	constructor(x, y, color) {
+		super(x, y, color);
+	}
+
+	draw(context) {
+		context.fillStyle = this.color;
+
+		context.beginPath();
+		context.moveTo(this.startX, this.startY);
+		context.lineTo(this.endX, this.endY);
+
+		context.lineWidth = 10;
+		context.strokeStyle = this.color;
+		context.stroke();
+	}
+}
+
+class Pen extends Shape {
+		
+		constructor(x, y, color) {
+			super(x, y, color);
+			this.points = [];
+		}
+
+		setEnd(x, y) {
+			this.points.push({x: x, y: y});
+		}
+
+		draw(context) {
+			
+		}
+}
+
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Rectangle",
+	nextObject: "Line",
 	nextColor: "Red",
 	isDrawing: false,
 	currentShape: undefined,
 	shapes: []
 };
 
-$("myCanvas").on("mousedown", function(e) {
+$(document).ready(function(){
 
-	settings.isDrawing = true;
+	$("#myCanvas").on("mousedown", function(e) {
 
-	var shape = undefined;
-	var context = settings.canvasObj.getContext("2d");
+		settings.isDrawing = true;
 
-	if(settings.nextObject === "circle") {
-		//shape = new Circle( TODO: find x and y , settings.nextColor);
+		var shape = undefined;
+		var context = settings.canvasObj.getContext("2d");
+
+		if(settings.nextObject === "circle") {
+			//shape = new Circle( TODO: find x and y , settings.nextColor);
+		}
+		else if(settings.nextObject === "Rectangle") {
+			//shape = new Rectangle( TODO: find x and y , settings.nextColor);
+		}
+		else if(settings.nextObject === "Line") {
+			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor);
+		}
+
+		settings.currentShape = shape;
+		settings.shapes.push(shape);
+
+		shape.draw(context);
+	});
+
+	$("#myCanvas").on("mousemove", function(e) {
+
+		if(settings.currentShape !== undefined) {
+			// updating the end position of the current shape
+			settings.currentShape.setEnd((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop));
+		}
+
+		drawAll();
+	});
+
+	$("#myCanvas").on("mouseup", function(e) {
+		settings.currentShape = undefined;
+	});
+
+	function drawAll() {
+		var context = settings.canvasObj.getContext("2d");
+
+		// clearing the canvasObj
+		context.clearRect(0,0,500,500);
+
+		// drawing all the objects
+		for(var i = 0; i < settings.shapes.length; i++) {
+			settings.shapes[i].draw(context);
+		}
 	}
-	else if(settings.nextObject === "Rectangle") {
-		//shape = new Rectangle( TODO: find x and y , settings.nextColor);
-	}
 
-	settings.currentShape = shape;
-	settings.shapes.push(shape);
-
-	shape.draw(context);
 });
 
-class Line extends Shape {
-	
-	constructor(x, y, color) {
-		super(x, y, color);
-		this.points = [];
-	}
-	//
-
-	setEnd(x, y) {
-		this.points.push({x: x, y: y});
-	}
-
-	draw(context) {
-		
-	}
-}
-
-$("myCanvas").on("mousemove", function(e) {
-
-	if(settings.currentShape !== undefined) {
-		// TODO: update the end position of the current shape
-		settings.currentShape.setEnd(e.x, e.y /* TODO: fix the position! */);
-	}
-
-	drawAll();
-});
-
-function drawAll() {
-	var context = settings.canvasObj.getContext("2d");
-	// TODO: clear the canvasObj
-
-	// TODO: draw all the objects
-}
-
-$("myCanvas").on("mouseup", function(e) {
-	settings.currentShape = undefined;
-});
 

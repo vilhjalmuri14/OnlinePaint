@@ -8,12 +8,18 @@
         <link rel="author" href="humans.txt">
     </head>
     <body>
-    	<button type="button" id="circleButton">Circle</button>
-        <button type="button" id="rectangleButton">Rectangle</button>
-        <button type="button" id="lineButton">Line</button>
-        <button type="button" id="textButton">Text</button>
-        <button type="button" id="penButton">Pen</button>
-        <canvas id="myCanvas" width="1080" height=""></canvas>
+    	<div id="toolBar">
+	    	<img src="assets/logo.png" alt="Palette" id="logo">
+
+	    	<input type="radio" name="tool" id="circleButton">Circle</input>
+	        <input type="radio" name="tool" id="rectangleButton">Rectangle</input>
+	        <input type="radio" name="tool" id="lineButton">Line</input>
+	        <input type="radio" name="tool" id="textButton">Text</input>
+	        <input type="radio" name="tool" id="penButton" checked>Pen</input>
+		</div>
+        <div>
+        	<canvas id="myCanvas" width="1920" height="1080"></canvas>
+        </div>
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
         <script src="js/main.js"></script>

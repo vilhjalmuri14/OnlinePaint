@@ -164,7 +164,7 @@ $(document).ready(function(){
 		var context = settings.canvasObj.getContext("2d");
 
 		// clearing the canvasObj
-		context.clearRect(0,0,500,500);
+		context.clearRect(0,0,1000,500);
 
 		// drawing all the objects
 		for(var i = 0; i < settings.shapes.length; i++) {

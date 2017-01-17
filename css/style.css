@@ -1,0 +1,22 @@
+body {
+	margin: 0;
+	background-color: lightblue;
+}
+
+#logo {
+	width: 30px;
+	height: 30px;
+}
+
+#toolBar {
+	padding: 15px;
+	background-color: rgb(221, 221, 221);
+}
+
+input[name="tool"] {
+	border: 50px;
+}
+
+canvas {
+	background-color: white;
+}

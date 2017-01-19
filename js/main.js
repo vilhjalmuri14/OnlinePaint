@@ -118,6 +118,7 @@ $(document).ready(function(){
 		document.getElementById("redo").disabled = true;
 		settings.redo = [];
 		document.getElementById("undo").disabled = false;
+		document.getElementById("clearAll").disabled = false;
 		var shape = undefined;
 		var context = settings.canvasObj.getContext("2d");
 
@@ -237,6 +238,7 @@ $(document).ready(function(){
 		settings.shapes = [];
 		document.getElementById("redo").disabled = true;
 		document.getElementById("undo").disabled = true;
+		document.getElementById("clearAll").disabled = true;
 		drawAll();
 	});
 

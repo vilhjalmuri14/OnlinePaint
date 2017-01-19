@@ -6,7 +6,13 @@
         <title>Skilaverkefni 1</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="author" href="humans.txt">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
     </head>
     <body>
     	<div class="container-fluid" id="allContainer">
@@ -37,7 +43,8 @@
 		            <button type="button" class="btn btn-default" name="clearAll" id="clearAll" disabled>Clear All</button>
 		        </div>
 		        <div class="col-md-2 col-sm-6 col-xs-12" id="saveOptions">
-		            <button type="button" class="btn btn-default" name="save" id="save">Save</button>
+		            <button type="button" class="btn btn-default" name="save" id="save" 
+		            data-toggle="modal" data-target="#saveModal">Save</button>
 		            <button type="button" class="btn btn-default" name="load" id="load">Load</button>
 		        </div>
 			</div>
@@ -45,8 +52,29 @@
 	        	<canvas id="myCanvas" width="1000" height="500"></canvas>
 	        </div>
 	    </div>
+	   
+		<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+		      </div>
+		      <div class="modal-body">
+		        <h3>Modal Body</h3>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+       
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
         <script src="js/main.js"></script>
 
     </body>

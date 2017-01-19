@@ -117,6 +117,7 @@ $(document).ready(function(){
 		settings.isDrawing = true;
 		document.getElementById("redo").disabled = true;
 		settings.redo = [];
+		document.getElementById("undo").disabled = false;
 		var shape = undefined;
 		var context = settings.canvasObj.getContext("2d");
 
@@ -216,11 +217,26 @@ $(document).ready(function(){
 	$("#undo").click(function(e) {
 		settings.redo.push(settings.shapes.pop());
 		document.getElementById("redo").disabled = false;
+		if(settings.shapes.length < 1) {
+			document.getElementById("undo").disabled = true;
+		}
 		drawAll();
 	});
 
 	$("#redo").click(function(e) {
 		settings.shapes.push(settings.redo.pop());
+		document.getElementById("undo").disabled = false;
+				if(settings.redo.length < 1) {
+			document.getElementById("redo").disabled = true;
+		}
+		drawAll();
+	});
+
+	$("#clearAll").click(function(e) {
+		settings.redo = [];
+		settings.shapes = [];
+		document.getElementById("redo").disabled = true;
+		document.getElementById("undo").disabled = true;
 		drawAll();
 	});
 

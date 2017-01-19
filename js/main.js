@@ -101,7 +101,7 @@ class Pen extends Shape {
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Line",
+	nextObject: "Pen",
 	nextColor: "Black",
 	lineWidth: "2",
 	isDrawing: false,
@@ -241,7 +241,6 @@ $(document).ready(function(){
 		document.getElementById("clearAll").disabled = true;
 		drawAll();
 	});
-
 });
 
 

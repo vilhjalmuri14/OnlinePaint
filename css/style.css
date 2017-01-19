@@ -1,21 +1,10 @@
-body {
-	margin: 0;
-	background-color: lightblue;
+.container-fluid {
+	background-color: red;
 }
 
-.toolBar {
+.row {
 	padding: 30px;
 	background-color: rgb(221, 221, 221);
-}
-
-.logoSpace {
-
-}
-
-#logo {
-	width: 30px;
-	height: 30px;
-	margin-right: 50px;
 }
 
 input[name="tool"] {
@@ -26,25 +15,27 @@ canvas {
 	background-color: white;
 }
 
+#logoSpace {
+
+}
+
 #logo {
-	float: left;
+	width: 30px;
+	height: 30px;
 }
 
-.toolPicker {
-	float: left;
-	margin-right: 50px;
+#toolPicker {
+
 }
 
-.colorPicker {
-	float: left;
-	margin-right: 50px;
+#colorPicker {
+
 }
 
-.slider {
-	float: left;
-	margin-right: 50px;
+#slider {
+
 }
 
-.undoOptions {
-	float: left;
+#undoOptions {
+
 }

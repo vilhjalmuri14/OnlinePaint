@@ -245,6 +245,27 @@ $(document).ready(function(){
 		document.getElementById("clearAll").disabled = true;
 		drawAll();
 	});
-});
 
+	$("#saveButton").click(function(e) {
+		var drawing = {
+		    title: $("#saveTitle").val(),
+		    content: settings.shapes
+		};
+		var url = "http://localhost:3000/api/drawings";
+
+		$.ajax({
+		    type: "POST",
+		    contentType: "application/json; charset=utf-8",
+		    url: url,
+		    data: JSON.stringify(drawing),
+		    success: function (data) {
+		        $('#saveModal').modal('hide');
+		    },
+		    error: function (xhr, err) {
+		        // The drawing could NOT be saved
+			}
+		});
+	});
+
+});
 

@@ -4,6 +4,7 @@ class Shape {
 		this.startY = y;
 		this.color = color;
 		this.lineWidth = lineWidth;
+		this.classType = "Shape";
 	}
 
 	setEnd(x, y) {
@@ -15,6 +16,7 @@ class Shape {
 class Rectangle extends Shape {
 	constructor(x, y, color, lineWidth) {
 		super(x, y, color, lineWidth);
+		this.classType = "Rectangle";
 	}
 
 	draw(context) {
@@ -26,6 +28,7 @@ class Rectangle extends Shape {
 class Line extends Shape {
 	constructor(x, y, color, lineWidth) {
 		super(x, y, color, lineWidth);
+		this.classType = "Line";
 	}
 
 	draw(context) {
@@ -44,6 +47,7 @@ class Line extends Shape {
 class Circle extends Shape {
 	constructor(x, y, color, lineWidth) {
 		super(x, y, color, lineWidth);
+		this.classType = "Circle";
 	}
 
 	draw(context) {
@@ -63,14 +67,22 @@ class Circle extends Shape {
 class Text extends Shape {
 	constructor(x, y, color) {
 		super(x, y, color);
+		this.classType = "Text";
+		this.theText = undefined;
 
-			// TODO: Open text area
+		// opening the textarea
+		var t = $("#canvasTextarea");
+		t.show();
+		t.offset({top: (this.startY + 80), left: this.startX });
 	}
 
 	draw(context) {
-		context.font = "32px serif";
-		context.fillStyle = this.color;
-  		context.fillText("Hæ Lalli", this.startX, this.startY);
+
+		if(this.theText !== undefined) {
+			context.font = "32px serif";
+			context.fillStyle = this.color;
+  			context.fillText(this.theText, this.startX, this.startY);
+		}
 	}
 }
 
@@ -101,7 +113,7 @@ class Pen extends Shape {
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Pen",
+	nextObject: "Text",
 	nextColor: "Black",
 	lineWidth: "2",
 	isDrawing: false,
@@ -265,6 +277,17 @@ $(document).ready(function(){
 		        // The drawing could NOT be saved
 			}
 		});
+	});
+
+	$("#canvasTextarea").keypress(function(e) {
+
+		// if you press enter you close the textarea
+		// and the text writes to the canvas
+	    if(e.which == 13) {
+	        settings.currentShape.theText = $(this).val();
+	        $(this).val("");
+	        $(this).hide();
+	    }
 	});
 
 });

@@ -112,6 +112,10 @@ var settings =  {
 
 $(document).ready(function(){
 
+	$('#selector label').click( function() {
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+
 	$("#myCanvas").on("mousedown", function(e) {
 
 		settings.isDrawing = true;

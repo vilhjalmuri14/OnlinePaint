@@ -15,30 +15,66 @@
 					<img src="assets/logo.png" alt="Palette" id="logo">
 				</div>
 
+				<!--Tool picker-->
 		    	<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker">
-			    	<input type="radio" name="tool" id="circleButton">Circle</input>
-			        <input type="radio" name="tool" id="rectangleButton">Rectangle</input>
-			        <input type="radio" name="tool" id="lineButton">Line</input>
-			        <input type="radio" name="tool" id="textButton">Text</input>
-			        <input type="radio" name="tool" id="penButton" checked>Pen</input>
+		    		<div id="selector" class="btn-group" data-toggle="buttons">
+		    			<label class="btn btn-primary">
+				    		<input type="radio" name="tool" id="circleButton">Circle</input>
+				    	</label>
+				    	<label class="btn btn-primary">
+				        	<input type="radio" name="tool" id="rectangleButton">Rectangle</input>
+				        </label>
+				        <label class="btn btn-primary">
+				        	<input type="radio" name="tool" id="lineButton">Line</input>
+				        </label>
+				        <label class="btn btn-primary">
+				        	<input type="radio" name="tool" id="textButton"">Text</input>
+				        </label>
+				        <label class="btn btn-primary active">
+				        	<input type="radio" name="tool" id="penButton" checked>Pen</input>
+				        </label>
+					</div>
 			    </div>
+
+			    <!--Color picker-->
 				<div class="col-md-2 col-sm-6 col-xs-12" id="colorPicker">
-					<input type="radio" name="color" id="blackColor" checked>Black</input>
-			        <input type="radio" name="color" id="redColor">Red</input>
-			        <input type="radio" name="color" id="blueColor">Blue</input>
-			        <input type="radio" name="color" id="yellowColor">Yellow</input>
+					<div id="selector" class="btn-group" data-toggle="buttons">
+						<label class="btn btn-primary active">
+							<input type="radio" name="color" id="blackColor" checked>Black</input>
+						</label>
+						<label class="btn btn-primary">
+				        	<input type="radio" name="color" id="redColor">Red</input>
+				        </label>
+				        <label class="btn btn-primary">
+				        	<input type="radio" name="color" id="blueColor">Blue</input>
+				        </label>
+				        <label class="btn btn-primary">
+				        	<input type="radio" name="color" id="yellowColor">Yellow</input>
+				        </label>
+			        </div>
 			    </div>
+
+			    <!--Line width slider-->
 			    <div class="col-md-2 col-sm-6 col-xs-12" id="slider">
-			    	<input type="range" name="lineWidth" min="1" max="10" step="1" value="1">
+			    	<div class="range range-info">
+			    		<input type="range" class="bar" name="lineWidth" min="1" max="10" step="1" value="1" onchange="rangeInfo.value=value">
+			    		<output id="rangeInfo">1</output>
+			    	</div>
 			    </div>
+
+			    <!--Undo, Redo and Clear buttons-->
 			    <div class="col-md-2 col-sm-6 col-xs-12" id="undoOptions">
-		            <button type="button" class="btn btn-default" name="undo" id="undo" disabled>Undo</button>
-		            <button type="button" class="btn btn-default" name="redo" id="redo" disabled>Redo</button>
-		            <button type="button" class="btn btn-default" name="clearAll" id="clearAll" disabled>Clear All</button>
+			    	<div class="btn-group">
+			            <button type="button" class="btn btn-default" name="undo" id="undo" disabled>Undo</button>
+			            <button type="button" class="btn btn-default" name="redo" id="redo" disabled>Redo</button>
+			            <button type="button" class="btn btn-default" name="clearAll" id="clearAll" disabled>Clear All</button>
+			        </div>
 		        </div>
 		        <div class="col-md-2 col-sm-6 col-xs-12" id="saveOptions">
-		            <button type="button" class="btn btn-default" name="save" id="save">Save</button>
-		            <button type="button" class="btn btn-default" name="load" id="load">Load</button>
+		        	<div class="btn-group">
+		            	<button type="button" class="btn btn-default" name="save" id="save">Save</button>
+		            	<button type="button" class="btn btn-default" name="load" id="load">Load</button>
+		            </div>
 		        </div>
 			</div>
 	        <div id="canvasContainer">

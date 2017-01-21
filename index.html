@@ -22,19 +22,19 @@
 				<!--Tool picker-->
 		    	<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker">
 		    		<div id="selector" class="btn-group" data-toggle="buttons">
-		    			<label class="btn btn-primary">
+		    			<label class="btn btn-primary" name="tool" id="circleButton">
 				    		<input type="radio" name="tool" id="circleButton">Circle</input>
 				    	</label>
-				    	<label class="btn btn-primary">
+				    	<label class="btn btn-primary" name="tool" id="rectangleButton">
 				        	<input type="radio" name="tool" id="rectangleButton">Rectangle</input>
 				        </label>
-				        <label class="btn btn-primary">
+				        <label class="btn btn-primary" name="tool" id="lineButton">
 				        	<input type="radio" name="tool" id="lineButton">Line</input>
 				        </label>
-				        <label class="btn btn-primary">
-				        	<input type="radio" name="tool" id="textButton"">Text</input>
+				        <label class="btn btn-primary" name="tool" id="textButton">
+				        	<input type="radio" name="tool" id="textButton">Text</input>
 				        </label>
-				        <label class="btn btn-primary active">
+				        <label class="btn btn-primary active" name="tool" id="penButton">
 				        	<input type="radio" name="tool" id="penButton" checked>Pen</input>
 				        </label>
 					</div>
@@ -43,16 +43,16 @@
 			    <!--Color picker-->
 				<div class="col-md-2 col-sm-6 col-xs-12" id="colorPicker">
 					<div id="selector" class="btn-group" data-toggle="buttons">
-						<label class="btn btn-primary active">
+						<label class="btn btn-default active" name="color" id="blackColor">
 							<input type="radio" name="color" id="blackColor" checked>Black</input>
 						</label>
-						<label class="btn btn-primary">
+						<label class="btn btn-default" name="color" id="redColor">
 				        	<input type="radio" name="color" id="redColor">Red</input>
 				        </label>
-				        <label class="btn btn-primary">
+				        <label class="btn btn-default" name="color" id="blueColor">
 				        	<input type="radio" name="color" id="blueColor">Blue</input>
 				        </label>
-				        <label class="btn btn-primary">
+				        <label class="btn btn-default" name="color" id="yellowColor">
 				        	<input type="radio" name="color" id="yellowColor">Yellow</input>
 				        </label>
 			        </div>
@@ -99,9 +99,8 @@
 		        <h4 class="modal-title" id="myModalLabel"><b>Save drawing</b></h4>
 		      </div>
 		      <div class="modal-body">
-		        <div class="form-group">
-    				<label for="saveTitle">Title:</label>
-    				<input type="text" class="form-control" id="saveTitle" placeholder="Title">
+		        <div class=" 				<label Title:</label>
+    				<input type="text" class="="saveTitle" placeholder="Title">
   				</div>
 		      </div>
 		      <div class="modal-footer">

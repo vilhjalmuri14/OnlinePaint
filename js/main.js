@@ -5,11 +5,20 @@ class Shape {
 		this.color = color;
 		this.lineWidth = lineWidth;
 		this.classType = "Shape";
+
 	}
 
 	setEnd(x, y) {
 		this.endX = x;
 		this.endY = y;
+	}
+
+	drawSelected(context) {
+		context.strokeStyle = "black";
+		context.fillRect(this.startX, this.startY, 10, 10);
+
+		context.strokeStyle = "black";
+		context.fillRect(this.endX, this.endY, 10, 10);
 	}
 }
 
@@ -22,6 +31,20 @@ class Rectangle extends Shape {
 	draw(context) {
 		context.strokeStyle = this.color;
 		context.strokeRect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
+	}
+
+	isSelected(x, y) {
+		if((x > this.startX && x < this.endX) || (x < this.startX && x > this.endX)) {
+			if((y < this.startY && y > this.endY) || (y > this.startY && y < this.endY)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -61,6 +84,21 @@ class Circle extends Shape {
 		context.lineWidth = this.lineWidth;
 		context.strokeStyle = this.color;
 		context.stroke();
+	}
+
+	isSelected(x, y) {
+		var radius = Math.sqrt(Math.pow(Math.abs(this.startX - this.endX), 2) 
+					+ Math.pow(Math.abs(this.startY - this.endY),2));
+
+		var selectRadius = Math.sqrt(Math.pow(Math.abs(this.startX - x), 2) 
+					+ Math.pow(Math.abs(this.startY - y),2));
+
+		if(selectRadius < radius) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -118,6 +156,8 @@ var settings =  {
 	lineWidth: 2,
 	isDrawing: false,
 	currentShape: undefined,
+	selectedShape: undefined,
+	selectPoints: undefined,
 	shapes: [],
 	redo: []
 };
@@ -138,33 +178,78 @@ $(document).ready(function(){
 		var shape = undefined;
 		var context = settings.canvasObj.getContext("2d");
 
+		var x = e.pageX - this.offsetLeft;
+		var y = e.pageY - this.offsetTop;
+
 		if(settings.nextObject === "Circle") {
-			shape = new Circle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);
+			shape = new Circle(x, y, settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Rectangle") {
-			shape = new Rectangle((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);
+			shape = new Rectangle(x, y, settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Line") {
-			shape = new Line((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);
+			shape = new Line(x, y, settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Pen") {
-			shape = new Pen((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);	
+			shape = new Pen(x, y, settings.nextColor, settings.lineWidth);	
 		}
 		else if(settings.nextObject === "Text") {
-			shape = new Text((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop), settings.nextColor, settings.lineWidth);		
+			shape = new Text(x, y, settings.nextColor, settings.lineWidth);		
+		}
+		else if(settings.nextObject === "Select") {
+			settings.selectedShape = undefined;
+			settings.selectPoints = new Shape(x, y);
+
+			// TODO: loop through all the objects
+			for(var i = 0; i < settings.shapes.length; i++) {
+				if(settings.shapes[i].isSelected(x, y)) {
+					settings.selectedShape = settings.shapes[i];
+					break;
+				}
+			}
 		}
 
 		settings.currentShape = shape;
-		settings.shapes.push(shape);
 
-		shape.draw(context);
+		if(shape !== "Select" && shape !== undefined) {
+			settings.shapes.push(shape);
+			shape.draw(context);
+		}
+
+		if(settings.selectedShape !== undefined) {
+			settings.selectedShape.drawSelected(context);
+		}
+
+		
 	});
 
 	$("#myCanvas").on("mousemove", function(e) {
+		var x = e.pageX - this.offsetLeft;
+		var y = e.pageY - this.offsetTop;
+
+		if(settings.selectedShape !== undefined && settings.selectPoints !== undefined) {
+			// TODO: clean and finish this!!!!!!!!
+
+			var shape = settings.selectedShape;
+			var deltaX = x - settings.selectPoints.startX;
+			var deltaY = y - settings.selectPoints.startY;
+			
+			shape.startX = shape.startX + deltaX;
+			shape.endX = shape.endX + deltaX;
+			shape.startY = shape.startY + deltaY;
+			shape.endY = shape.endY + deltaY;
+
+			settings.selectedShape = shape;
+
+			settings.selectPoints.startX = x;
+			//settings.selectPoints.endX = x;
+			settings.selectPoints.startY = y;
+			//settings.selectPoints.endY = y;
+		}
 
 		if(settings.currentShape !== undefined) {
 			// updating the end position of the current shape
-			settings.currentShape.setEnd((e.pageX - this.offsetLeft), (e.pageY - this.offsetTop));
+			settings.currentShape.setEnd(x, y);
 		}
 
 		drawAll();
@@ -172,6 +257,7 @@ $(document).ready(function(){
 
 	$("#myCanvas").on("mouseup", function(e) {
 		settings.currentShape = undefined;
+		settings.selectPoints = undefined;
 	});
 
 	$("label[name='tool']").click(function() {
@@ -181,17 +267,20 @@ $(document).ready(function(){
         if (toolValue === "circleButton") {
         	toolObj = "Circle";
         }
-        if (toolValue === "rectangleButton") {
+        else if (toolValue === "rectangleButton") {
         	toolObj = "Rectangle";
         }
-        if (toolValue === "lineButton") {
+        else if (toolValue === "lineButton") {
         	toolObj = "Line";
         }
-        if (toolValue === "textButton") {
+        else if (toolValue === "textButton") {
         	toolObj = "Text";
         }
-        if (toolValue === "penButton") {
+        else if (toolValue === "penButton") {
         	toolObj = "Pen";
+        }
+        else if (toolValue === "selectButton") {
+        	toolObj = "Select";
         }
 
         settings.nextObject = toolObj;
@@ -304,6 +393,11 @@ function drawAll() {
 	// drawing all the objects
 	for(var i = 0; i < settings.shapes.length; i++) {
 		settings.shapes[i].draw(context);
+	}
+
+	// drawing the selected object if there is any
+	if(settings.selectedShape !== undefined) {
+		settings.selectedShape.drawSelected(context);
 	}
 }
 

@@ -113,9 +113,9 @@ class Pen extends Shape {
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Text",
+	nextObject: "Line",
 	nextColor: "Black",
-	lineWidth: "2",
+	lineWidth: 2,
 	isDrawing: false,
 	currentShape: undefined,
 	shapes: [],
@@ -173,17 +173,6 @@ $(document).ready(function(){
 	$("#myCanvas").on("mouseup", function(e) {
 		settings.currentShape = undefined;
 	});
-
-	function drawAll() {
-		var context = settings.canvasObj.getContext("2d");
-		// clearing the canvasObj
-		context.clearRect(0,0,1000,500);
-
-		// drawing all the objects
-		for(var i = 0; i < settings.shapes.length; i++) {
-			settings.shapes[i].draw(context);
-		}
-	}
 
 	$("input[name='tool']").click(function() {
         var toolValue = $("input[name='tool']:checked").attr('id');
@@ -279,6 +268,19 @@ $(document).ready(function(){
 		});
 	});
 
+	$("#loadDrawingsButton").click(function(e) {
+		$.getJSON( "http://localhost:3000/api/drawings", function(data) {
+			var items = [];
+		
+			$.each(data, function(key, val) {
+				items.push("<button type='button' class='myDrawingsList btn btn-primary btn-lg btn-block' data-drawingID='" 
+							+ key + "'>" + val.title + "</button>");
+			});
+
+			$("#drawingsModal").html(items.join(""));	
+		});
+	});
+
 	$("#canvasTextarea").keypress(function(e) {
 
 		// if you press enter you close the textarea
@@ -291,4 +293,56 @@ $(document).ready(function(){
 	});
 
 });
+
+function drawAll() {
+	var context = settings.canvasObj.getContext("2d");
+	// clearing the canvasObj
+	context.clearRect(0,0,1000,500);
+
+	// drawing all the objects
+	for(var i = 0; i < settings.shapes.length; i++) {
+		settings.shapes[i].draw(context);
+	}
+}
+
+$(document).on('click', '.myDrawingsList', function () {
+    console.log($(this).attr("data-drawingID"));
+
+    $.getJSON( "http://localhost:3000/api/drawings/" + $(this).attr("data-drawingID"), function(data) {
+		settings.shapes = [];
+
+		$.each(data.content, function(key, val) {
+			var shape = undefined;
+			var context = settings.canvasObj.getContext("2d");
+
+			if(val.classType === "Circle") {
+				shape = new Circle(val.startX, val.startY, val.color, val.lineWidth);
+			}
+			else if(settings.nextObject === "Rectangle") {
+				shape = new Rectangle(val.startX, val.startY, val.color, val.lineWidth);
+			}
+			else if(settings.nextObject === "Line") {
+				shape = new Line(val.startX, val.startY, val.color, val.lineWidth);
+			}
+			else if(settings.nextObject === "Pen") {
+				shape = new Pen(val.startX, val.startY, val.color, val.lineWidth);
+				// TODO: get all the points
+				shape.points = val.points;
+			}
+			else if(settings.nextObject === "Text") {
+				shape = new Text(val.startX, val.startY, val.color, val.lineWidth);
+				shape.theText = val.theText;		
+			}
+
+			shape.setEnd(val.endX, val.endY);
+
+			settings.shapes.push(shape);
+			shape.draw(context);
+		});
+
+		drawAll();
+	});
+});
+
+
 

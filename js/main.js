@@ -113,7 +113,7 @@ class Pen extends Shape {
 
 var settings =  {
 	canvasObj: document.getElementById("myCanvas"),
-	nextObject: "Line",
+	nextObject: "Pen",
 	nextColor: "Black",
 	lineWidth: 2,
 	isDrawing: false,
@@ -174,8 +174,9 @@ $(document).ready(function(){
 		settings.currentShape = undefined;
 	});
 
-	$("input[name='tool']").click(function() {
-        var toolValue = $("input[name='tool']:checked").attr('id');
+	$("label[name='tool']").click(function() {
+        var toolValue = $("label[class='btn btn-primary active']").attr('id');
+
         var toolObj;
         if (toolValue === "circleButton") {
         	toolObj = "Circle";
@@ -196,9 +197,10 @@ $(document).ready(function(){
         settings.nextObject = toolObj;
     });
 
-    $("input[name='color']").click(function() {
-        var colorValue = $("input[name='color']:checked").attr('id');
+    $("label[name='color']").click(function() {
+        var colorValue = $("label[class='btn btn-default active']").attr('id');
         var colorObj;
+
         if (colorValue === "blackColor") {
         	colorObj = "Black";
         }

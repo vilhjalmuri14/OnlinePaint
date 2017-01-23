@@ -13,6 +13,13 @@ class Shape {
 		this.endY = y;
 	}
 
+	move(deltaX, deltaY) {
+		this.startX = this.startX + deltaX;
+		this.startY = this.startY + deltaY;
+		this.endX = this.endX + deltaX;
+		this.endY = this.endY + deltaY;
+	}
+
 	drawSelected(context) {
 		context.strokeStyle = "black";
 		context.fillRect(this.startX, this.startY, 10, 10);
@@ -64,6 +71,20 @@ class Line extends Shape {
 		context.lineWidth = this.lineWidth;
 		context.strokeStyle = this.color;
 		context.stroke();
+	}
+
+	isSelected(x, y) {
+		if((x > this.startX && x < this.endX) || (x < this.startX && x > this.endX)) {
+			if((y < this.startY && y > this.endY) || (y > this.startY && y < this.endY)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -133,6 +154,20 @@ class Pen extends Shape {
 	
 	setEnd(x, y) {
 		this.points.push({x: x, y: y});
+		this.endX = x;
+		this.endY = y;
+	}
+
+	move(deltaX, deltaY) {
+		this.startX = this.startX + deltaX;
+		this.startY = this.startY + deltaY;
+		this.endX = this.endX + deltaX;
+		this.endY = this.endY + deltaY;
+
+		for(var i = 0; i < this.points.length; i++) {
+			this.points[i].x = this.points[i].x + deltaX;
+			this.points[i].y = this.points[i].y + deltaY;
+		}
 	}
 
 	draw(context) {
@@ -146,6 +181,15 @@ class Pen extends Shape {
 			context.strokeStyle = this.color;
 			context.stroke();
 		}
+	}
+
+	isSelected(x, y) {
+		for(var i = 1; i < this.points.length; i++) {
+			if((Math.abs(this.points[i].x - x) < 20) && (Math.abs(this.points[i].y - y) < 20)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
@@ -233,13 +277,9 @@ $(document).ready(function(){
 			var shape = settings.selectedShape;
 			var deltaX = x - settings.selectPoints.startX;
 			var deltaY = y - settings.selectPoints.startY;
-			
-			shape.startX = shape.startX + deltaX;
-			shape.endX = shape.endX + deltaX;
-			shape.startY = shape.startY + deltaY;
-			shape.endY = shape.endY + deltaY;
 
-			settings.selectedShape = shape;
+			settings.selectedShape.move(deltaX, deltaY);
+
 
 			settings.selectPoints.startX = x;
 			//settings.selectPoints.endX = x;

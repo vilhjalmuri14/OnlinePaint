@@ -5,7 +5,6 @@ class Shape {
 		this.color = color;
 		this.lineWidth = lineWidth;
 		this.classType = "Shape";
-
 	}
 
 	setEnd(x, y) {
@@ -124,26 +123,28 @@ class Circle extends Shape {
 }
 
 class Text extends Shape {
-	constructor(x, y, color) {
+	constructor(pageX, pageY, x, y, color, font, textSize) {
 		super(x, y, color);
 		this.classType = "Text";
 		this.theText = undefined;
-		this.textSize = 0;
+		this.textSize = textSize;
+		this.font = font;
+		this.textLenght = 0;
 
 		// opening the textarea
 		var t = $("#canvasTextarea");
 		t.show();
-		t.offset({top: (this.startY + 80), left: this.startX });
+		t.offset({top: pageY, left: pageX});
 	}
 
 	draw(context) {
 
 		if(this.theText !== undefined) {
-			context.font = "32px serif";
+			context.font = this.textSize + "px " + this.font;
 			context.fillStyle = this.color;
   			context.fillText(this.theText, this.startX, this.startY);
-  			this.textSize = context.measureText(this.theText).width;
-  			this.endX = this.startX + this.textSize; 
+  			this.textLenght = context.measureText(this.theText).width;
+  			this.endX = this.startX + this.textLenght; 
   			this.endY = this.startY;
 		}
 	}
@@ -212,7 +213,7 @@ var settings =  {
 	nextColor: "Black",
 	lineWidth: 2,
 	font: "Arial",
-	textSize: 2,
+	textSize: 8,
 	isDrawing: false,
 	currentShape: undefined,
 	selectedShape: undefined,
@@ -261,13 +262,13 @@ $(document).ready(function(){
 			shape = new Pen(x, y, settings.nextColor, settings.lineWidth);	
 		}
 		else if(settings.nextObject === "Text") {
-			shape = new Text(x, y, settings.nextColor, settings.lineWidth);		
+			shape = new Text(e.pageX, e.pageY, x, y, settings.nextColor, settings.font, settings.textSize);		
 		}
 		else if(settings.nextObject === "Select") {
 			settings.selectedShape = undefined;
 			settings.selectPoints = new Shape(x, y);
 
-			// TODO: loop through all the objects
+			// looping through all the object and check if they are selected
 			for(var i = 0; i < settings.shapes.length; i++) {
 				if(settings.shapes[i].isSelected(x, y)) {
 					settings.selectedShape = settings.shapes[i];
@@ -282,12 +283,9 @@ $(document).ready(function(){
 			settings.shapes.push(shape);
 			shape.draw(context);
 		}
-
 		if(settings.selectedShape !== undefined) {
 			settings.selectedShape.drawSelected(context);
-		}
-
-		
+		}		
 	});
 
 	$("#myCanvas").on("mousemove", function(e) {
@@ -375,23 +373,20 @@ $(document).ready(function(){
     	var textSizeDropDownValue = $("li[class='active'][name='font-size-dropdown'").attr("id");
     	var textSizeObj;
 
-    	if (textSizeDropDownValue === "font-size-1") {
-    		textSizeObj = "1";
-    	}
-    	else if (textSizeDropDownValue === "font-size-2") {
-    		textSizeObj = "2";
-    	}
-    	else if (textSizeDropDownValue === "font-size-4") {
-    		textSizeObj = "4";
-    	}
-    	else if (textSizeDropDownValue === "font-size-8") {
+    	if (textSizeDropDownValue === "font-size-8") {
     		textSizeObj = "8";
+    	}
+    	else if (textSizeDropDownValue === "font-size-12") {
+    		textSizeObj = "12";
     	}
     	else if (textSizeDropDownValue === "font-size-16") {
     		textSizeObj = "16";
     	}
     	else if (textSizeDropDownValue === "font-size-32") {
     		textSizeObj = "32";
+    	}
+    	else if (textSizeDropDownValue === "font-size-64") {
+    		textSizeObj = "64";
     	}
 
     	settings.textSize = textSizeObj;
@@ -484,7 +479,6 @@ $(document).ready(function(){
 	});
 
 	$("#canvasTextarea").keypress(function(e) {
-
 		// if you press enter you close the textarea
 		// and the text writes to the canvas
 	    if(e.which == 13) {

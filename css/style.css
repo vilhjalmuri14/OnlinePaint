@@ -1,5 +1,31 @@
+header {
+	    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+}
+
+h2 {
+  font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: #2b2b2b;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+
+.dropdown {
+	padding-left: 1px;
+	padding-right: 1px; 
+}
+
+#logo-section {
+	margin: 0 0;
+}
+
 .container-fluid {
-	background-color: red;
+	/*background-color: rgb(140, 199, 255);/*Blue color background*/
+	/*background-image: url("../assets/canvas-background.jpg"); /*Canvas background*/
+	/*background-image: url("../assets/wood-grain-background.jpg"); /*Wood grain background*/
+	background-image: url("../assets/light-wood-grain-background.jpg"); /*Light wood grain background*/
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 .dropdown {
@@ -7,10 +33,10 @@
 }
 
 .row {
-	padding: 5px;
-	background-color: rgb(221, 221, 221);
+	padding: 5px 0px;
+	background-color: rgb(140, 199, 255);
+	/*background-color: rgb(167, 190, 211);*/
 }
-
 
 canvas {
 	background-color: white;

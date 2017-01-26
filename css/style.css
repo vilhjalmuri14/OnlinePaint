@@ -38,7 +38,13 @@ h2 {
 	/*background-color: rgb(167, 190, 211);*/
 }
 
+#canvasContainer {
+    padding-top: 3%;
+    height: 81%;
+}
+
 canvas {
+
 	background-color: white;
 }
 

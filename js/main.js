@@ -211,6 +211,8 @@ var settings =  {
 	nextObject: "Pen",
 	nextColor: "Black",
 	lineWidth: 2,
+	font: "Arial",
+	textSize: 2,
 	isDrawing: false,
 	currentShape: undefined,
 	selectedShape: undefined,
@@ -221,7 +223,15 @@ var settings =  {
 
 $(document).ready(function(){
 
+	$(document).ready(function() {
+		$(".dropdown-toggle").dropdown();
+	});
+
 	$('#selector label').click( function() {
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+
+	$('.dropdown-menu li').click( function() {
 		$(this).addClass('active').siblings().removeClass('active');
 	});
 
@@ -315,8 +325,8 @@ $(document).ready(function(){
 
 	$("label[name='tool']").click(function() {
         var toolValue = $("label[class='btn btn-primary active']").attr('id');
-
         var toolObj;
+
         if (toolValue === "circleButton") {
         	toolObj = "Circle";
         }
@@ -337,6 +347,54 @@ $(document).ready(function(){
         }
 
         settings.nextObject = toolObj;
+    });
+
+    $("#font-dropdown").click(function() {
+    	var dropdownValue = $("li[class='active'][name='font-dropdown'").attr("id");
+    	var fontObj;
+
+    	if (dropdownValue === "arial") {
+    		fontObj = "Arial";
+    	}
+    	else if (dropdownValue === "comicSans") {
+    		fontObj = "Comic Sans MS";
+    	}
+    	else if (dropdownValue === "georgia") {
+    		fontObj = "Georgia";
+    	}
+    	else if (dropdownValue === "timesNewRoman") {
+    		fontObj = "Times New Roman";
+    	}
+    	else if (dropdownValue === "verdana") {
+    		fontObj = "Verdana";
+    	}
+    	settings.font = fontObj;
+    });
+
+    $("#font-size-dropdown").click(function() {
+    	var textSizeDropDownValue = $("li[class='active'][name='font-size-dropdown'").attr("id");
+    	var textSizeObj;
+
+    	if (textSizeDropDownValue === "font-size-1") {
+    		textSizeObj = "1";
+    	}
+    	else if (textSizeDropDownValue === "font-size-2") {
+    		textSizeObj = "2";
+    	}
+    	else if (textSizeDropDownValue === "font-size-4") {
+    		textSizeObj = "4";
+    	}
+    	else if (textSizeDropDownValue === "font-size-8") {
+    		textSizeObj = "8";
+    	}
+    	else if (textSizeDropDownValue === "font-size-16") {
+    		textSizeObj = "16";
+    	}
+    	else if (textSizeDropDownValue === "font-size-32") {
+    		textSizeObj = "32";
+    	}
+
+    	settings.textSize = textSizeObj;
     });
 
     $("label[name='color']").click(function() {

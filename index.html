@@ -1,20 +1,27 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Skilaverkefni 1</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="author" href="humans.txt">
-        <!-- Latest compiled and minified CSS -->
+	<head>
+		<title>OnlinePaint</title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="author" href="humans.txt">
+		
+		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    </head>
-    <body id="bodyID">
+	</head>
+	<header>
+		<div align="center">
+		<img src="assets/white-logo.png" alt="OnlinePaint" width="300">
+		</div>
+	</header>
+    <body>
     	<div class="container-fluid" id="allContainer">
-	    	<div class="row">
+	    	<div class="row" style="margin-left: 0px; margin-right: 0px;">
 				<!--Tool picker-->
 		    	<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker">
 		    		<div id="selector" class="btn-group" data-toggle="buttons">
@@ -49,6 +56,7 @@
 
 			    <!--Dropdowns for font settings-->
 			    <div class="col-md-1 col-sm-6 col-xs-12">
+			    <div class="btn-group">
 			    	<!--Dropdown for font-->
 				    <div class="dropdown" align="center">
 						<button class="btn btn-primary dropdown-toggle" title="Font" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,6 +83,7 @@
 							<li name="font-size-dropdown" id="font-size-32"><a class="dropdown-item" href="#">32</a></li>
 							<li name="font-size-dropdown" id="font-size-64"><a class="dropdown-item" href="#">64</a></li>
 						</div>
+					</div>
 					</div>
 				</div>
 
@@ -153,6 +162,8 @@
 	        </div>
 
 	        <textarea rows="3" cols="25" id="canvasTextarea" style="display: none;"></textarea>
+
+	        
 	    </div>
 	   
 	   <!-- Save modal -->

@@ -128,6 +128,7 @@ class Text extends Shape {
 		super(x, y, color);
 		this.classType = "Text";
 		this.theText = undefined;
+		this.textSize = 0;
 
 		// opening the textarea
 		var t = $("#canvasTextarea");
@@ -141,6 +142,18 @@ class Text extends Shape {
 			context.font = "32px serif";
 			context.fillStyle = this.color;
   			context.fillText(this.theText, this.startX, this.startY);
+  			this.textSize = context.measureText(this.theText).width;
+  			this.endX = this.startX + this.textSize; 
+  			this.endY = this.startY;
+		}
+	}
+
+	isSelected(x, y) {
+		if(((this.startX < x) && (this.endX > x)) && (((this.endY - y) > 0) && ((this.endY - y) < 30))) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 }

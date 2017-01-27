@@ -287,6 +287,66 @@ $(document).ready(function(){
 	    }
 	});
 
+	function activateTool(t) {
+		$(t).addClass('active').siblings().removeClass('active');
+	}
+
+	function undoByKey() {
+		settings.redo.push(settings.shapes.pop());
+		document.getElementById("redo").disabled = false;
+		if(settings.shapes.length < 1) {
+			document.getElementById("undo").disabled = true;
+		}
+		drawAll();
+	}
+
+	function redoByKey() {
+		settings.shapes.push(settings.redo.pop());
+		document.getElementById("undo").disabled = false;
+		if(settings.redo.length < 1) {
+			document.getElementById("redo").disabled = true;
+		}
+		drawAll();
+	}
+
+
+	$('html').keypress(function(e) {
+		var code = e.keyCode || e.which;
+		if(code === 112) {
+			settings.nextObject = "Pen";
+			activateTool("#penButton");
+		}
+		else if(code === 108) {
+			settings.nextObject = "Line";
+			activateTool("#lineButton");
+		}
+		else if(code === 115) {
+			settings.nextObject = "Select";
+			activateTool("#selectButton");
+		}
+		else if(code === 99) {
+			settings.nextObject = "Circle";
+			activateTool("#circleButton");
+		}
+		else if(code === 114) {
+			settings.nextObject = "Rectangle";
+			activateTool("#rectangleButton");
+		}
+		else if(code === 116) {
+			settings.nextObject = "Text";
+			activateTool("#textButton");
+		}
+		else if(code === 122) {
+			undoByKey();
+		}
+		else if(code === 121) {
+			redoByKey();
+		}
+		else if(code === 120) {
+			//delete
+		}
+	});
+
 });
 
 function drawAll() {

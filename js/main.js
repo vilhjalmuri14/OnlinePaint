@@ -222,6 +222,10 @@ var settings =  {
 	redo: []
 };
 
+$(document).keypress(function(e) {
+	alert("Bjadni er svosem alveg fínn kall");
+});
+
 $(document).ready(function(){
 
 	$(document).ready(function() {
@@ -487,7 +491,6 @@ $(document).ready(function(){
 	        $(this).hide();
 	    }
 	});
-
 });
 
 function drawAll() {

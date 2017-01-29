@@ -138,7 +138,6 @@ class Text extends Shape {
 	}
 
 	draw(context) {
-
 		if(this.theText !== undefined) {
 			context.font = this.textSize + "px " + this.font;
 			context.fillStyle = this.color;
@@ -222,11 +221,7 @@ var settings =  {
 	redo: []
 };
 
-$(document).keypress(function(e) {
-	alert("Bjadni er svosem alveg fínn kall");
-});
-
-$(document).ready(function(){
+$(document).ready(function() {
 
 	$(document).ready(function() {
 		$(".dropdown-toggle").dropdown();

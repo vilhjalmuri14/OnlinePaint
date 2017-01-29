@@ -19,48 +19,48 @@
 		<img src="assets/white-logo.png" alt="OnlinePaint" width="300">
 		</div>
 	</header>
-    <body>
-    	<div class="container-fluid" id="allContainer">
-	    	<div class="row" style="margin-left: 0px; margin-right: 0px;">
+	<body>
+		<div class="container-fluid" id="allContainer">
+			<div class="row" style="margin-left: 0px; margin-right: 0px;">
 				<!--Tool picker-->
-		    	<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker" align="center">
-		    		<div id="selector" class="btn-group" data-toggle="buttons">
-		    			<!--Circle button-->
-		    			<label class="btn btn-primary" title="Circle" name="tool" id="circleButton">
-				    		<input type="radio" name="tool" id="circleButton">
-				    			<img src="assets/white-circle-icon.png" width="20" aria-label="Circle" aria-hidden="true" />
-				    		</input>
-				    	</label>
-				    	<!--Rectangle button-->
-				    	<label class="btn btn-primary" title="Rectangle" name="tool" id="rectangleButton">
-				        	<input type="radio" name="tool" id="rectangleButton"><img src="assets/white-rectangle-icon.png" width="20" aria-label="Rectangle" aria-hidden="true" /></input>
-				        </label>
-				        <!--Line button-->
-				        <label class="btn btn-primary" title="Line" name="tool" id="lineButton">
-				        	<input type="radio" name="tool" id="lineButton"><img src="assets/white-line-icon.png" width="20" aria-label="Line" aria-hidden="true" /></input>
-				        </label>
-				        <!--Text button-->
-				        <label class="btn btn-primary" title="Text" name="tool" id="textButton">
-				        	<input type="radio" name="tool" id="textButton"><img src="assets/white-text-icon.png" width="20" aria-label="Text" aria-hidden="true" /></input>
-				        </label>
-				        <!--Pen button-->
-				        <label class="btn btn-primary active" title="Text" name="tool" id="penButton">
-				        	<input type="radio" name="tool" id="penButton" checked><span class="glyphicon glyphicon-pencil" aria-label="Pen" aria-hidden="true"></span></input>
-				        </label>
-				        <!--Select button-->
-				        <label class="btn btn-primary" title="Select" name="tool" id="selectButton">
-				        	<input type="radio" name="tool" id="selectButton" checked><span class="glyphicon glyphicon-hand-up" aria-label="Select" aria-hidden="true"></span></input>
-				        </label>
+				<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker" align="center">
+					<div id="selector" class="btn-group" data-toggle="buttons">
+						<!--Circle button-->
+						<label class="btn btn-primary" title="Circle" name="tool" id="circleButton">
+							<input type="radio" name="tool" id="circleButton">
+								<img src="assets/white-circle-icon.png" width="20" aria-label="Circle" aria-hidden="true" />
+							</input>
+						</label>
+						<!--Rectangle button-->
+						<label class="btn btn-primary" title="Rectangle" name="tool" id="rectangleButton">
+							<input type="radio" name="tool" id="rectangleButton"><img src="assets/white-rectangle-icon.png" width="20" aria-label="Rectangle" aria-hidden="true" /></input>
+						</label>
+						<!--Line button-->
+						<label class="btn btn-primary" title="Line" name="tool" id="lineButton">
+							<input type="radio" name="tool" id="lineButton"><img src="assets/white-line-icon.png" width="20" aria-label="Line" aria-hidden="true" /></input>
+						</label>
+						<!--Text button-->
+						<label class="btn btn-primary" title="Text" name="tool" id="textButton">
+							<input type="radio" name="tool" id="textButton"><img src="assets/white-text-icon.png" width="20" aria-label="Text" aria-hidden="true" /></input>
+						</label>
+						<!--Pen button-->
+						<label class="btn btn-primary active" title="Text" name="tool" id="penButton">
+							<input type="radio" name="tool" id="penButton" checked><span class="glyphicon glyphicon-pencil" aria-label="Pen" aria-hidden="true"></span></input>
+						</label>
+						<!--Select button-->
+						<label class="btn btn-primary" title="Select" name="tool" id="selectButton">
+							<input type="radio" name="tool" id="selectButton" checked><span class="glyphicon glyphicon-hand-up" aria-label="Select" aria-hidden="true"></span></input>
+						</label>
 					</div>
-			    </div>
+				</div>
 
-			    <!--Dropdowns for font settings-->
-			    <div class="col-md-1 col-sm-6 col-xs-12" align="center">
-				    <div class="btn-group">
-				    	<!--Dropdown for font-->
-					    <div class="dropdown" align="center">
+				<!--Dropdowns for font settings-->
+				<div class="col-md-1 col-sm-6 col-xs-12" align="center">
+					<div class="btn-group">
+						<!--Dropdown for font-->
+						<div class="dropdown" align="center">
 							<button class="btn btn-primary dropdown-toggle" title="Font" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    	<span class="glyphicon glyphicon-font" aria-label="Font" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-font" aria-label="Font" aria-hidden="true"></span>
 							</button>
 							<div class="dropdown-menu" id="font-dropdown" aria-labelledby="dropdownMenuButton">
 								<li name="font-dropdown" class="active" id="arial"><a class="dropdown-item" href="#">Arial</a></li>
@@ -74,7 +74,7 @@
 						<!--Dropdown for text size-->
 						<div class="dropdown" align="center">
 							<button class="btn btn-primary dropdown-toggle" title="Text size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    	<span class="glyphicon glyphicon-text-height" aria-label="Text size" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-text-height" aria-label="Text size" aria-hidden="true"></span>
 							</button>
 							<div class="dropdown-menu" id="font-size-dropdown" aria-labelledby="dropdownMenuButton">
 								<li name="font-size-dropdown" id="font-size-8"><a class="dropdown-item" href="#">8</a></li>
@@ -87,7 +87,7 @@
 					</div>
 				</div>
 
-			    <!--Color picker-->
+				<!--Color picker-->
 				<div class="col-md-2 col-sm-6 col-xs-12" id="colorPicker" align="center">
 					<div id="selector" class="btn-group" data-toggle="buttons">
 					<!--Black color button-->
@@ -98,129 +98,129 @@
 						</label>
 						<!--Red color button-->
 						<label class="btn btn-default" title="Red color" name="color" id="redColor">
-				        	<input type="radio" name="color" id="redColor">
-				        		<img src="assets/red-color-icon.png" width="20" aria-label="Red" aria-hidden="true" />
-				        	</input>
-				        </label>
-				        <!--Blue color button-->
-				        <label class="btn btn-default" title="Blue color" name="color" id="blueColor">
-				        	<input type="radio" name="color" id="blueColor">
-				        		<img src="assets/blue-color-icon.png" width="20" aria-label="Blue" aria-hidden="true" />
-				        	</input>
-				        </label>
-				        <!--Yellow color button-->
-				        <label class="btn btn-default" title="Yellow color" name="color" id="yellowColor">
-				        	<input type="radio" name="color" id="yellowColor">
-				        		<img src="assets/yellow-color-icon.png" width="20" aria-label="Yellow" aria-hidden="true" />
-				        	</input>
-				        </label>
-			        </div>
-			    </div>
+							<input type="radio" name="color" id="redColor">
+								<img src="assets/red-color-icon.png" width="20" aria-label="Red" aria-hidden="true" />
+							</input>
+						</label>
+						<!--Blue color button-->
+						<label class="btn btn-default" title="Blue color" name="color" id="blueColor">
+							<input type="radio" name="color" id="blueColor">
+								<img src="assets/blue-color-icon.png" width="20" aria-label="Blue" aria-hidden="true" />
+							</input>
+						</label>
+						<!--Yellow color button-->
+						<label class="btn btn-default" title="Yellow color" name="color" id="yellowColor">
+							<input type="radio" name="color" id="yellowColor">
+								<img src="assets/yellow-color-icon.png" width="20" aria-label="Yellow" aria-hidden="true" />
+							</input>
+						</label>
+					</div>
+				</div>
 
-			    <!--Line width slider-->
-			    <div class="col-md-2 col-sm-6 col-xs-12" id="slider" align="center">
-			    	<div class="range range-info">
-			    		<input type="range" class="bar" name="lineWidth" min="1" max="10" step="1" value="1" onchange="rangeInfo.value=value">
-			    		<output id="rangeInfo">1</output>
-			    	</div>
-			    </div>
+				<!--Line width slider-->
+				<div class="col-md-2 col-sm-6 col-xs-12" id="slider" align="center">
+					<div class="range range-info">
+						<input type="range" class="bar" name="lineWidth" min="1" max="10" step="1" value="1" onchange="rangeInfo.value=value">
+						<output id="rangeInfo">1</output>
+					</div>
+				</div>
 
-			    <!--Undo, Redo and Clear buttons-->
-			    <div class="col-md-2 col-sm-6 col-xs-12" id="undoOptions" align="center">
-			    	<div class="btn-group">
-			    		<!--Undo button-->
-			            <button type="button" class="btn btn-default" title="Undo" name="undo" id="undo" disabled>
-			            	<span class="glyphicon glyphicon-triangle-left" aria-label="Undo" aria-hidden="true"></span>
-			            </button>
-			            <!--Redo button-->
-			            <button type="button" class="btn btn-default" title="Redo" name="redo" id="redo" disabled>
-			            	<span class="glyphicon glyphicon-triangle-right" aria-label="Redo" aria-hidden="true"></span>
-			            </button>
-			            <!--Clear all button-->
-			            <button type="button" class="btn btn-default" title="Clear All" name="clearAll" id="clearAll" disabled>Clear All</button>
-			        </div>
-		        </div>
+				<!--Undo, Redo and Clear buttons-->
+				<div class="col-md-2 col-sm-6 col-xs-12" id="undoOptions" align="center">
+					<div class="btn-group">
+						<!--Undo button-->
+						<button type="button" class="btn btn-default" title="Undo" name="undo" id="undo" disabled>
+							<span class="glyphicon glyphicon-triangle-left" aria-label="Undo" aria-hidden="true"></span>
+						</button>
+						<!--Redo button-->
+						<button type="button" class="btn btn-default" title="Redo" name="redo" id="redo" disabled>
+							<span class="glyphicon glyphicon-triangle-right" aria-label="Redo" aria-hidden="true"></span>
+						</button>
+						<!--Clear all button-->
+						<button type="button" class="btn btn-default" title="Clear All" name="clearAll" id="clearAll" disabled>Clear All</button>
+					</div>
+				</div>
 
-		        <!--Save, load and info buttons-->
-		        <div class="col-md-2 col-sm-6 col-xs-12" id="saveOptions" align="center">
-		        	<div class="btn-group">
-		        	<!--Save button-->
-		            	<button type="button" class="btn btn-default" title="Save" name="save"
-			            data-toggle="modal" data-target="#saveModal">
-			            	<span class="glyphicon glyphicon-floppy-save" aria-label="Save" aria-hidden="true"></span>
-			            </button>
-			            <!--Load button-->
-			            <button type="button" class="btn btn-default" title="Load" name="load"
-			            data-toggle="modal" data-target="#loadDrawingsModal" id="loadDrawingsButton">
-			            	<span class="glyphicon glyphicon-floppy-open" aria-label="Load" aria-hidden="true"></span>
-			            </button>
-			            <!--Info button-->
-			            <button type="button" class="btn btn-default" title="Info" name="info"
-			            data-toggle="modal" data-target="#infoModal" id="infoButton">
-			            	<span class="glyphicon glyphicon-info-sign" aria-label="Info" aria-hidden="true"></span>
-			            </button>
-		            </div>
-		        </div>
+				<!--Save, load and info buttons-->
+				<div class="col-md-2 col-sm-6 col-xs-12" id="saveOptions" align="center">
+					<div class="btn-group">
+					<!--Save button-->
+						<button type="button" class="btn btn-default" title="Save" name="save"
+						data-toggle="modal" data-target="#saveModal">
+							<span class="glyphicon glyphicon-floppy-save" aria-label="Save" aria-hidden="true"></span>
+						</button>
+						<!--Load button-->
+						<button type="button" class="btn btn-default" title="Load" name="load"
+						data-toggle="modal" data-target="#loadDrawingsModal" id="loadDrawingsButton">
+							<span class="glyphicon glyphicon-floppy-open" aria-label="Load" aria-hidden="true"></span>
+						</button>
+						<!--Info button-->
+						<button type="button" class="btn btn-default" title="Info" name="info"
+						data-toggle="modal" data-target="#infoModal" id="infoButton">
+							<span class="glyphicon glyphicon-info-sign" aria-label="Info" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
 			</div>
-	        <div id="canvasContainer" align="center">
-	        	<canvas id="myCanvas" width="1000" height="500"></canvas>
-	        </div>
+			<div id="canvasContainer" align="center">
+				<canvas id="myCanvas" width="1000" height="500"></canvas>
+			</div>
 
-	        <textarea rows="3" cols="25" id="canvasTextarea" style="display: none;"></textarea>
+			<textarea rows="3" cols="25" id="canvasTextarea" style="display: none;"></textarea>
 
-	        
-	    </div>
+			
+		</div>
 	   
 	   <!-- Save modal -->
 		<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel"><b>Save drawing</b></h4>
-		      </div>
-		      <div class="modal-body">
-		        <div class="form-group">
-    				<input type="text" class="form-control" id="saveTitle" placeholder="Title">
-  				</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary" id="saveButton" >Save!</button>
-		      </div>
-		    </div>
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel"><b>Save drawing</b></h4>
+			  </div>
+			  <div class="modal-body">
+				<div class="form-group">
+					<input type="text" class="form-control" id="saveTitle" placeholder="Title">
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="saveButton" >Save!</button>
+			  </div>
+			</div>
 		  </div>
 		</div>
 
 		<!-- load drawings modal -->
 		<div class="modal fade" id="loadDrawingsModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel"><b>Saved drawings</b></h4>
-		      </div>
-		      <div class="modal-body" id="drawingsModal">
-		        <h2> My saved drawings </h2>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel"><b>Saved drawings</b></h4>
+			  </div>
+			  <div class="modal-body" id="drawingsModal">
+				<h2> My saved drawings </h2>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
 		  </div>
 		</div>
 
 		<!-- Info modal -->
 		<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel"><b>Information</b></h4>
-		      </div>
-		      <div class="modal-body">
-		        <div class="form-group">
-		        	<p>
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel"><b>Information</b></h4>
+			  </div>
+			  <div class="modal-body">
+				<div class="form-group">
+					<p>
 						You can use following these keys to select a tool or action.<br>
 						-P    Pen tool<br>
 						-L    Line tool<br>
@@ -231,23 +231,23 @@
 						-Z    Undo<br>
 						-Y    Redo<br>
 					</p>
-  				</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
+				</div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
 		  </div>
 		</div>
 
 
 
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-       
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+	   
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
-        <script src="js/shapes.js"></script>
-        <script src="js/app.js"></script>
+		
+		<script src="js/shapes.js"></script>
+		<script src="js/app.js"></script>
 
-    </body>
+	</body>
 </html>

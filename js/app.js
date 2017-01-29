@@ -1,4 +1,4 @@
-var settings =  {
+var settings = {
 	canvasObj: document.getElementById("myCanvas"),
 	nextObject: "Pen",
 	nextColor: "Black",
@@ -13,7 +13,7 @@ var settings =  {
 	redo: []
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
 
 	$(".dropdown-toggle").dropdown();
 
@@ -26,10 +26,9 @@ $(document).ready(function(){
 	});
 
 	$("#myCanvas").on("mousedown", function(e) {
-
 		settings.isDrawing = true;
 
-		// undo and redu buttons
+		// Undo and redo buttons
 		document.getElementById("redo").disabled = true;
 		settings.redo = [];
 		document.getElementById("undo").disabled = false;
@@ -51,10 +50,10 @@ $(document).ready(function(){
 			shape = new Line(x, y, settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Pen") {
-			shape = new Pen(x, y, settings.nextColor, settings.lineWidth);	
+			shape = new Pen(x, y, settings.nextColor, settings.lineWidth);
 		}
 		else if(settings.nextObject === "Text") {
-			shape = new Text(e.pageX, e.pageY, x, y, settings.nextColor, settings.font, settings.textSize);		
+			shape = new Text(e.pageX, e.pageY, x, y, settings.nextColor, settings.font, settings.textSize);
 		}
 		else if(settings.nextObject === "Select") {
 			settings.selectedShape = undefined;
@@ -116,107 +115,108 @@ $(document).ready(function(){
 	});
 
 	$("label[name='tool']").click(function() {
-        var toolValue = $("label[class='btn btn-primary active']").attr('id');
-        var toolObj;
+		var toolValue = $("label[class='btn btn-primary active']").attr('id');
+		var toolObj;
 
-        if (toolValue === "circleButton") {
-        	toolObj = "Circle";
-        }
-        else if (toolValue === "rectangleButton") {
-        	toolObj = "Rectangle";
-        }
-        else if (toolValue === "lineButton") {
-        	toolObj = "Line";
-        }
-        else if (toolValue === "textButton") {
-        	toolObj = "Text";
-        }
-        else if (toolValue === "penButton") {
-        	toolObj = "Pen";
-        }
-        else if (toolValue === "selectButton") {
-        	toolObj = "Select";
-        }
+		if (toolValue === "circleButton") {
+			toolObj = "Circle";
+		}
+		else if (toolValue === "rectangleButton") {
+			toolObj = "Rectangle";
+		}
+		else if (toolValue === "lineButton") {
+			toolObj = "Line";
+		}
+		else if (toolValue === "textButton") {
+			toolObj = "Text";
+		}
+		else if (toolValue === "penButton") {
+			toolObj = "Pen";
+		}
+		else if (toolValue === "selectButton") {
+			toolObj = "Select";
+		}
 
-        settings.nextObject = toolObj;
+		settings.nextObject = toolObj;
 
-        // if there is any shape selected we unselect it
-        settings.selectedShape = undefined;
-    });
+		// if there is any shape selected we unselect it
+		settings.selectedShape = undefined;
+	});
 
-    $("#font-dropdown").click(function() {
-    	var dropdownValue = $("li[class='active'][name='font-dropdown'").attr("id");
-    	var fontObj;
+	$("#font-dropdown").click(function() {
+		var dropdownValue = $("li[class='active'][name='font-dropdown'").attr("id");
+		var fontObj;
 
-    	if (dropdownValue === "arial") {
-    		fontObj = "Arial";
-    	}
-    	else if (dropdownValue === "comicSans") {
-    		fontObj = "Comic Sans MS";
-    	}
-    	else if (dropdownValue === "georgia") {
-    		fontObj = "Georgia";
-    	}
-    	else if (dropdownValue === "timesNewRoman") {
-    		fontObj = "Times New Roman";
-    	}
-    	else if (dropdownValue === "verdana") {
-    		fontObj = "Verdana";
-    	}
-    	settings.font = fontObj;
-    });
+		if (dropdownValue === "arial") {
+			fontObj = "Arial";
+		}
+		else if (dropdownValue === "comicSans") {
+			fontObj = "Comic Sans MS";
+		}
+		else if (dropdownValue === "georgia") {
+			fontObj = "Georgia";
+		}
+		else if (dropdownValue === "timesNewRoman") {
+			fontObj = "Times New Roman";
+		}
+		else if (dropdownValue === "verdana") {
+			fontObj = "Verdana";
+		}
+		settings.font = fontObj;
+	});
 
-    $("#font-size-dropdown").click(function() {
-    	var textSizeDropDownValue = $("li[class='active'][name='font-size-dropdown'").attr("id");
-    	var textSizeObj;
+	$("#font-size-dropdown").click(function() {
+		var textSizeDropDownValue = $("li[class='active'][name='font-size-dropdown'").attr("id");
+		var textSizeObj;
 
-    	if (textSizeDropDownValue === "font-size-8") {
-    		textSizeObj = "8";
-    	}
-    	else if (textSizeDropDownValue === "font-size-12") {
-    		textSizeObj = "12";
-    	}
-    	else if (textSizeDropDownValue === "font-size-16") {
-    		textSizeObj = "16";
-    	}
-    	else if (textSizeDropDownValue === "font-size-32") {
-    		textSizeObj = "32";
-    	}
-    	else if (textSizeDropDownValue === "font-size-64") {
-    		textSizeObj = "64";
-    	}
+		if (textSizeDropDownValue === "font-size-8") {
+			textSizeObj = "8";
+		}
+		else if (textSizeDropDownValue === "font-size-12") {
+			textSizeObj = "12";
+		}
+		else if (textSizeDropDownValue === "font-size-16") {
+			textSizeObj = "16";
+		}
+		else if (textSizeDropDownValue === "font-size-32") {
+			textSizeObj = "32";
+		}
+		else if (textSizeDropDownValue === "font-size-64") {
+			textSizeObj = "64";
+		}
 
-    	settings.textSize = textSizeObj;
-    });
+		settings.textSize = textSizeObj;
+	});
 
-    $("label[name='color']").click(function() {
-        var colorValue = $("label[class='btn btn-default active']").attr('id');
-        var colorObj;
+	$("label[name='color']").click(function() {
+		var colorValue = $("label[class='btn btn-default active']").attr('id');
+		var colorObj;
 
-        if (colorValue === "blackColor") {
-        	colorObj = "Black";
-        }
-        if (colorValue === "redColor") {
-        	colorObj = "Red";
-        }
-        if (colorValue === "blueColor") {
-        	colorObj = "Blue";
-        }
-        if (colorValue === "yellowColor") {
-        	colorObj = "Yellow";
-        }
+		if (colorValue === "blackColor") {
+			colorObj = "Black";
+		}
+		if (colorValue === "redColor") {
+			colorObj = "Red";
+		}
+		if (colorValue === "blueColor") {
+			colorObj = "Blue";
+		}
+		if (colorValue === "yellowColor") {
+			colorObj = "Yellow";
+		}
 
-        settings.nextColor = colorObj;
-    });
+		settings.nextColor = colorObj;
+	});
 
 	$('input[name="lineWidth"]').change(function() {
-        var widthValue = $('input[name="lineWidth"]').val();
-        settings.lineWidth = widthValue;
-    });
+		var widthValue = $('input[name="lineWidth"]').val();
+		settings.lineWidth = widthValue;
+	});
 
 	$("#undo").click(function(e) {
 		settings.redo.push(settings.shapes.pop());
 		document.getElementById("redo").disabled = false;
+		
 		if(settings.shapes.length < 1) {
 			document.getElementById("undo").disabled = true;
 		}
@@ -226,7 +226,8 @@ $(document).ready(function(){
 	$("#redo").click(function(e) {
 		settings.shapes.push(settings.redo.pop());
 		document.getElementById("undo").disabled = false;
-				if(settings.redo.length < 1) {
+		
+		if(settings.redo.length < 1) {
 			document.getElementById("redo").disabled = true;
 		}
 		drawAll();
@@ -244,21 +245,21 @@ $(document).ready(function(){
 	$("#saveButton").click(function(e) {
 		if($("#saveTitle").val() !== undefined) {
 			var drawing = {
-		    title: $("#saveTitle").val(),
-		    content: settings.shapes
+				title: $("#saveTitle").val(),
+				content: settings.shapes
 			};
 			var url = "http://localhost:3000/api/drawings";
 
 			$.ajax({
-			    type: "POST",
-			    contentType: "application/json; charset=utf-8",
-			    url: url,
-			    data: JSON.stringify(drawing),
-			    success: function (data) {
-			        $('#saveModal').modal('hide');
-			    },
-			    error: function (xhr, err) {
-			        // The drawing could NOT be saved
+				type: "POST",
+				contentType: "application/json; charset=utf-8",
+				url: url,
+				data: JSON.stringify(drawing),
+				success: function (data) {
+					$('#saveModal').modal('hide');
+				},
+				error: function (xhr, err) {
+					// The drawing could NOT be saved
 				}
 			});
 		}
@@ -269,22 +270,22 @@ $(document).ready(function(){
 			var items = [];
 		
 			$.each(data, function(key, val) {
-				items.push("<button type='button' class='myDrawingsList btn btn-primary btn-lg btn-block' data-drawingID='" 
-							+ key + "'>" + val.title + "</button>");
+				items.push("<button type='button' class='myDrawingsList btn btn-primary btn-lg btn-block' data-drawingID='"
+					+ key + "'>" + val.title + "</button>");
 			});
 
-			$("#drawingsModal").html(items.join(""));	
+			$("#drawingsModal").html(items.join(""));
 		});
 	});
 
 	$("#canvasTextarea").keypress(function(e) {
 		// if you press enter you close the textarea
 		// and the text writes to the canvas
-	    if(e.which == 13) {
-	        settings.currentShape.theText = $(this).val();
-	        $(this).val("");
-	        $(this).hide();
-	    }
+		if(e.which == 13) {
+			settings.currentShape.theText = $(this).val();
+			$(this).val("");
+			$(this).hide();
+		}
 	});
 
 	function activateTool(t) {
@@ -366,9 +367,9 @@ function drawAll() {
 }
 
 $(document).on('click', '.myDrawingsList', function () {
-    console.log($(this).attr("data-drawingID"));
+	console.log($(this).attr("data-drawingID"));
 
-    $.getJSON( "http://localhost:3000/api/drawings/" + $(this).attr("data-drawingID"), function(data) {
+	$.getJSON( "http://localhost:3000/api/drawings/" + $(this).attr("data-drawingID"), function(data) {
 		settings.shapes = [];
 
 		$.each(data.content, function(key, val) {

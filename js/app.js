@@ -342,9 +342,9 @@ $(document).ready(function(){
 		else if(code === 121) {
 			redoByKey();
 		}
-		else if(code === 120) {
-			//delete
-		}
+		/*else if(code === 120) {
+			delete
+		}*/
 	});
 
 });

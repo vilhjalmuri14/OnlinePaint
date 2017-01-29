@@ -23,7 +23,7 @@
     	<div class="container-fluid" id="allContainer">
 	    	<div class="row" style="margin-left: 0px; margin-right: 0px;">
 				<!--Tool picker-->
-		    	<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker">
+		    	<div class="col-md-3 col-sm-6 col-xs-12" id="toolPicker" align="center">
 		    		<div id="selector" class="btn-group" data-toggle="buttons">
 		    			<!--Circle button-->
 		    			<label class="btn btn-primary" title="Circle" name="tool" id="circleButton">
@@ -55,40 +55,40 @@
 			    </div>
 
 			    <!--Dropdowns for font settings-->
-			    <div class="col-md-1 col-sm-6 col-xs-12">
-			    <div class="btn-group">
-			    	<!--Dropdown for font-->
-				    <div class="dropdown" align="center">
-						<button class="btn btn-primary dropdown-toggle" title="Font" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    	<span class="glyphicon glyphicon-font" aria-label="Font" aria-hidden="true"></span>
-						</button>
-						<div class="dropdown-menu" id="font-dropdown" aria-labelledby="dropdownMenuButton">
-							<li name="font-dropdown" class="active" id="arial"><a class="dropdown-item" href="#">Arial</a></li>
-							<li name="font-dropdown" id="comicSans"><a class="dropdown-item" href="#">Comic Sans</a></li>
-							<li name="font-dropdown" id="georgia"><a class="dropdown-item" href="#">Georgia</a></li>
-							<li name="font-dropdown" id="timesNewRoman"><a class="dropdown-item" href="#">Times New Roman</a></li>
-							<li name="font-dropdown" id="verdana"><a class="dropdown-item" href="#">Verdana</a></li>
+			    <div class="col-md-1 col-sm-6 col-xs-12" align="center">
+				    <div class="btn-group">
+				    	<!--Dropdown for font-->
+					    <div class="dropdown" align="center">
+							<button class="btn btn-primary dropdown-toggle" title="Font" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    	<span class="glyphicon glyphicon-font" aria-label="Font" aria-hidden="true"></span>
+							</button>
+							<div class="dropdown-menu" id="font-dropdown" aria-labelledby="dropdownMenuButton">
+								<li name="font-dropdown" class="active" id="arial"><a class="dropdown-item" href="#">Arial</a></li>
+								<li name="font-dropdown" id="comicSans"><a class="dropdown-item" href="#">Comic Sans</a></li>
+								<li name="font-dropdown" id="georgia"><a class="dropdown-item" href="#">Georgia</a></li>
+								<li name="font-dropdown" id="timesNewRoman"><a class="dropdown-item" href="#">Times New Roman</a></li>
+								<li name="font-dropdown" id="verdana"><a class="dropdown-item" href="#">Verdana</a></li>
+							</div>
 						</div>
-					</div>
 
-					<!--Dropdown for text size-->
-					<div class="dropdown" align="center">
-						<button class="btn btn-primary dropdown-toggle" title="Text size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    	<span class="glyphicon glyphicon-text-height" aria-label="Text size" aria-hidden="true"></span>
-						</button>
-						<div class="dropdown-menu" id="font-size-dropdown" aria-labelledby="dropdownMenuButton">
-							<li name="font-size-dropdown" id="font-size-8"><a class="dropdown-item" href="#">8</a></li>
-							<li name="font-size-dropdown" id="font-size-12"><a class="dropdown-item" href="#">12</a></li>
-							<li name="font-size-dropdown" id="font-size-16" class="active"><a class="dropdown-item" href="#">16</a></li>
-							<li name="font-size-dropdown" id="font-size-32"><a class="dropdown-item" href="#">32</a></li>
-							<li name="font-size-dropdown" id="font-size-64"><a class="dropdown-item" href="#">64</a></li>
+						<!--Dropdown for text size-->
+						<div class="dropdown" align="center">
+							<button class="btn btn-primary dropdown-toggle" title="Text size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    	<span class="glyphicon glyphicon-text-height" aria-label="Text size" aria-hidden="true"></span>
+							</button>
+							<div class="dropdown-menu" id="font-size-dropdown" aria-labelledby="dropdownMenuButton">
+								<li name="font-size-dropdown" id="font-size-8"><a class="dropdown-item" href="#">8</a></li>
+								<li name="font-size-dropdown" id="font-size-12"><a class="dropdown-item" href="#">12</a></li>
+								<li name="font-size-dropdown" id="font-size-16" class="active"><a class="dropdown-item" href="#">16</a></li>
+								<li name="font-size-dropdown" id="font-size-32"><a class="dropdown-item" href="#">32</a></li>
+								<li name="font-size-dropdown" id="font-size-64"><a class="dropdown-item" href="#">64</a></li>
+							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 
 			    <!--Color picker-->
-				<div class="col-md-2 col-sm-6 col-xs-12" id="colorPicker">
+				<div class="col-md-2 col-sm-6 col-xs-12" id="colorPicker" align="center">
 					<div id="selector" class="btn-group" data-toggle="buttons">
 					<!--Black color button-->
 						<label class="btn btn-default active" title="Black color" name="color" id="blackColor">
@@ -118,7 +118,7 @@
 			    </div>
 
 			    <!--Line width slider-->
-			    <div class="col-md-2 col-sm-6 col-xs-12" id="slider">
+			    <div class="col-md-2 col-sm-6 col-xs-12" id="slider" align="center">
 			    	<div class="range range-info">
 			    		<input type="range" class="bar" name="lineWidth" min="1" max="10" step="1" value="1" onchange="rangeInfo.value=value">
 			    		<output id="rangeInfo">1</output>
@@ -126,7 +126,7 @@
 			    </div>
 
 			    <!--Undo, Redo and Clear buttons-->
-			    <div class="col-md-2 col-sm-6 col-xs-12" id="undoOptions">
+			    <div class="col-md-2 col-sm-6 col-xs-12" id="undoOptions" align="center">
 			    	<div class="btn-group">
 			    		<!--Undo button-->
 			            <button type="button" class="btn btn-default" title="Undo" name="undo" id="undo" disabled>
@@ -141,8 +141,8 @@
 			        </div>
 		        </div>
 
-		        <!--Save and load buttons-->
-		        <div class="col-md-1 col-sm-6 col-xs-12" id="saveOptions">
+		        <!--Save, load and info buttons-->
+		        <div class="col-md-2 col-sm-6 col-xs-12" id="saveOptions" align="center">
 		        	<div class="btn-group">
 		        	<!--Save button-->
 		            	<button type="button" class="btn btn-default" title="Save" name="save"
@@ -153,6 +153,11 @@
 			            <button type="button" class="btn btn-default" title="Load" name="load"
 			            data-toggle="modal" data-target="#loadDrawingsModal" id="loadDrawingsButton">
 			            	<span class="glyphicon glyphicon-floppy-open" aria-label="Load" aria-hidden="true"></span>
+			            </button>
+			            <!--Info button-->
+			            <button type="button" class="btn btn-default" title="Info" name="info"
+			            data-toggle="modal" data-target="#infoModal" id="infoButton">
+			            	<span class="glyphicon glyphicon-info-sign" aria-label="Info" aria-hidden="true"></span>
 			            </button>
 		            </div>
 		        </div>
@@ -197,6 +202,36 @@
 		      </div>
 		      <div class="modal-body" id="drawingsModal">
 		        <h2> My saved drawings </h2>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Info modal -->
+		<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel"><b>Information</b></h4>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group">
+		        	<p>
+						You can use following these keys to select a tool or action.<br>
+						-P    Pen tool<br>
+						-L    Line tool<br>
+						-C    Circle tool<br>
+						-R    Rectangle tool<br>
+						-T    Text tool<br>
+						-S    Select tool<br><br>
+						-Z    Undo<br>
+						-Y    Redo<br>
+					</p>
+  				</div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

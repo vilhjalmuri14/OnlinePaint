@@ -8,6 +8,10 @@ h2 {
   text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 }
 
+.btn {
+	margin: 2 0;
+}
+
 .dropdown {
 	padding-left: 1px;
 	padding-right: 1px; 
@@ -18,9 +22,6 @@ h2 {
 }
 
 .container-fluid {
-	/*background-color: rgb(140, 199, 255);/*Blue color background*/
-	/*background-image: url("../assets/canvas-background.jpg"); /*Canvas background*/
-	/*background-image: url("../assets/wood-grain-background.jpg"); /*Wood grain background*/
 	background-image: url("../assets/light-wood-grain-background.jpg"); /*Light wood grain background*/
 	background-repeat: no-repeat;
 	background-position: center;
@@ -51,10 +52,6 @@ canvas {
 #allContainer {
 	padding-right: 0px;
 	padding-left: 0px;
-}
-
-#logoSpace {
-
 }
 
 #logo {

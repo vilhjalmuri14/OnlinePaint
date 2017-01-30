@@ -1,3 +1,5 @@
 # OnlinePaint
 
-![GitHub Logo](assets/black-color-icon.png)
+![GitHub Logo](images/sample1.png)
+
+![GitHub Logo](images/sample2.png)

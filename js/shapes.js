@@ -36,6 +36,7 @@ class Rectangle extends Shape {
 
 	draw(context) {
 		context.strokeStyle = this.color;
+		context.lineWidth = this.lineWidth;
 		context.strokeRect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
 	}
 
@@ -100,7 +101,6 @@ class Circle extends Shape {
 					+ Math.pow(Math.abs(this.startY - this.endY),2));
 		context.arc(this.startX, this.startY, radius, 0, 2 * Math.PI, false );
 
-		// TODO: change this
 		context.lineWidth = this.lineWidth;
 		context.strokeStyle = this.color;
 		context.stroke();
@@ -132,9 +132,11 @@ class Text extends Shape {
 		this.textLenght = 0;
 
 		// opening the textarea
-		var t = $("#canvasTextarea");
-		t.show();
-		t.offset({top: pageY, left: pageX});
+		if(pageX !== 0 && pageY !== 0) {
+			var t = $("#canvasTextarea");
+			t.show();
+			t.offset({top: pageY, left: pageX});	
+		}
 	}
 
 	draw(context) {
@@ -163,6 +165,7 @@ class Pen extends Shape {
 		
 	constructor(x, y, color, lineWidth) {
 		super(x, y, color, lineWidth);
+		this.classType = "Pen";
 		this.points = [];
 	}
 	

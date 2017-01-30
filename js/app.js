@@ -262,6 +262,8 @@ $(document).ready(function() {
 					// The drawing could NOT be saved
 				}
 			});
+
+			$("#saveTitle").val("");
 		}
 	});
 
@@ -367,7 +369,6 @@ function drawAll() {
 }
 
 $(document).on('click', '.myDrawingsList', function () {
-	console.log($(this).attr("data-drawingID"));
 
 	$.getJSON( "http://localhost:3000/api/drawings/" + $(this).attr("data-drawingID"), function(data) {
 		settings.shapes = [];
@@ -379,31 +380,31 @@ $(document).on('click', '.myDrawingsList', function () {
 			if(val.classType === "Circle") {
 				shape = new Circle(val.startX, val.startY, val.color, val.lineWidth);
 			}
-			else if(settings.nextObject === "Rectangle") {
+			else if(val.classType === "Rectangle") {
 				shape = new Rectangle(val.startX, val.startY, val.color, val.lineWidth);
 			}
-			else if(settings.nextObject === "Line") {
+			else if(val.classType === "Line") {
 				shape = new Line(val.startX, val.startY, val.color, val.lineWidth);
 			}
-			else if(settings.nextObject === "Pen") {
+			else if(val.classType === "Pen") {
 				shape = new Pen(val.startX, val.startY, val.color, val.lineWidth);
-				// TODO: get all the points
+				
 				shape.points = val.points;
 			}
-			else if(settings.nextObject === "Text") {
-				shape = new Text(val.startX, val.startY, val.color, val.lineWidth);
-				shape.theText = val.theText;		
+			else if(val.classType === "Text") {
+				shape = new Text(0, 0, val.startX, val.startY, val.color, val.font, val.textSize);
+				shape.theText = val.theText;
 			}
 
-			shape.setEnd(val.endX, val.endY);
+			shape.endX = val.endX;
+			shape.endY = val.endY;
 
 			settings.shapes.push(shape);
-			shape.draw(context);
 		});
 
 		drawAll();
+
+		// close the modal
+		$('#loadDrawingsModal').modal('hide');
 	});
 });
-
-
-
